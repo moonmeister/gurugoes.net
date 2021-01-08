@@ -6,15 +6,23 @@ module.exports = {
     FAST_REFRESH: true,
   },
   siteMetadata: {
+    siteUrl: "https://www.gurugoes.net",
     title: "gurugoes.net",
   },
   plugins: [
     {
-      resolve: "gatsby-source-wordpress-experimental",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        url: "https://cms.gurugoes.net/graphql",
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
+    // {
+    //   resolve: "gatsby-source-wordpress-experimental",
+    //   options: {
+    //     url: "https://cms.gurugoes.net/graphql",
+    //   },
+    // },
     // {
     //   resolve: "gatsby-source-strava",
     //   options: {
@@ -23,9 +31,13 @@ module.exports = {
     //     stravaToken: process.env.STRAVA_TOKEN,
     //   },
     // },
+    "gatsby-plugin-layout",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-image",
     "gatsby-plugin-postcss",
+    "gatsby-plugin-linaria",
+    "gatsby-plugin-preact",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
@@ -34,5 +46,7 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
+    "gatsby-plugin-netlify",
+    "gatsby-plugin-webpack-size",
   ],
 };
