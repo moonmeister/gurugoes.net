@@ -1,14 +1,27 @@
 import * as React from "react"
-
+import { useStaticQuery, graphql } from "gatsby"
 import { Transition } from '@headlessui/react'
 
-import { Link } from "../components/button"
+import { Link } from "./button"
+import { useCategoryContext } from "../hooks/CategoryContext"
 
 const { useState } = React
 
 export function Header() {
 
   const [isOpen, setIsOpen] = useState(false)
+  const { currentCategory } = useCategoryContext()
+
+  const { allWpCategory: { nodes: categories } } = useStaticQuery(graphql`
+    {
+      allWpCategory(filter: {count: { ne: null }}) {
+        nodes {
+          name
+          uri
+        }
+      }
+    }
+  `)
 
   return (
     <>
@@ -16,10 +29,10 @@ export function Header() {
         <nav class="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
           <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
             <div class="flex items-center justify-between w-full md:w-auto">
-              <a href="#">
+              {/* <a href="#">
                 <span class="sr-only">Workflow</span>
                 <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="" />
-              </a>
+              </a> */}
               <div class="-mr-2 flex items-center md:hidden">
                 <button type="button" onClick={() => setIsOpen(!isOpen)} class="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" id="main-menu" aria-haspopup="true">
                   <span class="sr-only">Open main menu</span>
@@ -32,13 +45,14 @@ export function Header() {
             </div>
           </div>
           <div class="hidden md:flex md:space-x-10">
-            <Link to="#">Product</Link>
+            {currentCategory !== "all" && <Link to="/">All</Link>}
 
-            <Link to="#">Features</Link>
-
-            <Link to="#">Marketplace</Link>
-
-            <Link to="#">Company</Link>
+            {
+              categories?.map(({ name, uri }) => (
+                currentCategory === name ? null :
+                  <Link to={uri}>{name}</Link>
+              ))
+            }
           </div>
           <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
             {/* <span class="inline-flex rounded-md shadow">
@@ -76,13 +90,9 @@ export function Header() {
             </div>
             <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
               <div class="px-2 pt-2 pb-3" role="none">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Product</a>
-
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Features</a>
-
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Marketplace</a>
-
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Company</a>
+                {categories?.map(({ name, uri }) => (
+                  <Link to={uri} className="block px-3 py-2 rounded-md text-base font-medium text-secondary-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">{name}</Link>
+                ))}
               </div>
               <div role="none">
                 <a href="#" class="block w-full px-5 py-3 text-center font-medium text-secondary-600 bg-gray-50 hover:bg-gray-100" role="menuitem">

@@ -1,27 +1,34 @@
-export function classNames(...args) {
-  const classes = args.reduce((acc, arg) => {
-    if (!arg) return acc;
+function append(acc, arg) {
+  return acc + arg + " "
+}
 
+export function classNames(...args) {
+  let classes = ""
+
+  for (const arg of args) {
+    if (!arg) continue;
     const argType = typeof arg;
     if (argType === "string" || argType === 'number') {
-      acc.push(arg);
-    } else if (argType === "number") {
-      acc.push(arg);
+      classes = append(classes, arg);
     } else if (Array.isArray(arg) && arg.length) {
       const inner = classNames(...arg);
-      if (inner) acc.push(inner);
+      if (inner) classes = append(classes, inner);
     } else if (argType === "object") {
-      if (arg.toString !== Object.prototype.toString) {
-        classes.push(arg.toString());
-      } else {
-        for (const [key, value] of Object.entries(arg)) {
-          if (value) acc.push(key);
-        }
+      for (const [key, value] of Object.entries(arg)) {
+        if (value) classes = append(classes, key);
       }
     }
+  }
 
-    return acc
-  }, [])
+  return classes
+}
 
-  return classes.join(' ');
+export function formatDate(dateString, locale) {
+  const date = new Date(dateString);
+
+  return date.toLocaleDateString(locale, {
+    month: 'long',
+    year: 'numeric',
+    day: 'numeric',
+  });
 }

@@ -9,14 +9,14 @@ export function Button() {
 
 }
 
-export function Link({ children, className, ...rest }) {
+export function Link({ children, className, override = false, ...rest }) {
   return (
-    <GatsbyLink {...rest} className={cn(buttonClasses, className)}>{children}</GatsbyLink>
+    <GatsbyLink {...rest} className={cn({ [buttonClasses]: !override }, className)}>{children}</GatsbyLink>
   )
 }
 
-export function ExtLink({ children, className, ...rest }) {
+export function ExtLink({ to, href, children, override = false, className, ...rest }) {
   return (
-    <a {...rest} rel="noopener" className={cn(buttonClasses, className)}>{children}</a>
+    <a {...rest} href={href || to} rel="noopener" className={cn({ [buttonClasses]: !override }, className)}>{children}</a>
   )
 }

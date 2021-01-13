@@ -10,6 +10,7 @@ module.exports = {
     title: "gurugoes.net",
   },
   plugins: [
+    /* Source Plugins*/
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -17,12 +18,12 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: "gatsby-source-wordpress-experimental",
-    //   options: {
-    //     url: "https://cms.gurugoes.net/graphql",
-    //   },
-    // },
+    {
+      resolve: "gatsby-source-wordpress-experimental",
+      options: {
+        url: "https://cms.gurugoes.net/graphql",
+      },
+    },
     // {
     //   resolve: "gatsby-source-strava",
     //   options: {
@@ -31,14 +32,28 @@ module.exports = {
     //     stravaToken: process.env.STRAVA_TOKEN,
     //   },
     // },
-    "gatsby-plugin-layout",
+
+    /* Data transformer Plugins */
+    {
+      resolve: `gatsby-plugin-readingtime`,
+      options: {
+        types: {
+          WpPost: (source) => source?.content ?? "",
+        },
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    /* Gatsby Feature Plugins */
+    "gatsby-plugin-layout",
     "gatsby-plugin-image",
+    /* Third Party Integration Plugins */
     "gatsby-plugin-postcss",
     "gatsby-plugin-linaria",
     "gatsby-plugin-preact",
     "gatsby-plugin-react-helmet",
+
+    /* Misc Utilities to generate misc site related structured content */
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
@@ -46,7 +61,11 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
+
+    /* Hosting and backend plugins */
     "gatsby-plugin-netlify",
+
+    /* Build Plugins */
     "gatsby-plugin-webpack-size",
   ],
 };
