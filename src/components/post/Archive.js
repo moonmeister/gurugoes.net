@@ -3,10 +3,50 @@ import * as React from "react"
 import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
+import { useQuery } from 'react-query'
+
 import { Link } from '../button'
 import { Time } from '../time'
 
+// import useIntersectionObserver from '../../hooks/useIntersectionObserver'
+import { request, gql } from "../../libs/api"
+
 export function ArchiveView({ posts: staticPosts, pageInfo }) {
+
+  const {
+    data: posts,
+  } = useQuery(
+    'posts',
+    async () => {
+      return await request((data) => {
+        return data.posts.nodes
+      }, gql`
+      {
+        posts(first: 4) {
+          nodes {
+            title
+            excerpt
+            dateGmt
+            uri
+            featuredImage {
+              node {
+                id
+              }
+            }
+            categories {
+              nodes {
+                name
+                uri
+              }
+            }
+          }
+        }
+      }`)
+    },
+    {
+      initialData: staticPosts,
+    }
+  )
 
   return (
     < div class="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8" >
