@@ -150,7 +150,7 @@ export const fragments = graphql`
 
   fragment PostSeo on WpPost {
     title
-    description: excerpt
+    description: cleanExcerpt
     modified: modifiedGmt(formatString: "YYYY-MM-DDTHH:mm:ss[Z]")
     published: dateGmt(formatString: "YYYY-MM-DDTHH:mm:ss[Z]")
     featuredImage {
@@ -168,7 +168,7 @@ export const fragments = graphql`
 
   fragment PageSeo on WpPage {
     title
-    description: excerpt
+    description: cleanExcerpt
     featuredImage {
         node {
           ...OgSeoFeaturedImage
