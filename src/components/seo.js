@@ -96,7 +96,7 @@ export default function SEO({ description = '', lang = "en", type = "website", m
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": metaTitle,
-        "abstract": metaDescription
+        "abstract": metaDescription,
         "dateModified": data?.modified,
         "datePublished": data?.published,
         "image": [`https://gurugoes.net${jsonLdImage}`],
