@@ -95,7 +95,8 @@ export default function SEO({ description = '', lang = "en", type = "website", m
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": title,
+        "headline": metaTitle,
+        "abstract": metaDescription
         "dateModified": data?.modified,
         "datePublished": data?.published,
         "image": [`https://gurugoes.net${jsonLdImage}`],
