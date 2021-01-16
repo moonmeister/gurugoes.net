@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import { useCategoryContext } from "../hooks/CategoryContext"
 
-export default function SEO({ description = '', lang = "en", meta = [], title, data = {} }) {
+export default function SEO({ description = '', lang = "en", type = "website", meta = [], title, data = {} }) {
   const { wp: { generalSettings: { siteTitle, siteDescription } } } = useStaticQuery(
     graphql`
       query {
@@ -23,7 +23,7 @@ export default function SEO({ description = '', lang = "en", meta = [], title, d
   const metaDescription = description || data?.description || siteDescription;
   const metaTitle = title || data?.title
 
-  const ogCard = [
+  let ogCard = [
     {
       property: `og:title`,
       content: metaTitle,
@@ -34,14 +34,14 @@ export default function SEO({ description = '', lang = "en", meta = [], title, d
     },
     {
       property: `og:type`,
-      content: `website`,
+      content: type,
     },
   ]
 
-  const twitterCard = [
+  let twitterCard = [
     {
       name: `twitter:card`,
-      content: `summary`,
+      content: `summary_large_image`,
     },
     {
       name: `twitter:site`,
@@ -57,6 +57,8 @@ export default function SEO({ description = '', lang = "en", meta = [], title, d
     },
   ]
 
+  const jsonLd = [];
+
   const featuredImage = data?.featuredImage?.node
 
   if (featuredImage) {
@@ -64,7 +66,7 @@ export default function SEO({ description = '', lang = "en", meta = [], title, d
 
     const imageUrl = `https://gurugoes.net${localFile?.childImageSharp.resize.src}`
 
-    twitterCard.append([{
+    twitterCard = twitterCard.concat([{
       name: `twitter:image:alt`,
       content: altText,
     },
@@ -73,13 +75,32 @@ export default function SEO({ description = '', lang = "en", meta = [], title, d
       content: imageUrl
     }])
 
-    ogCard.append([{
+    ogCard = ogCard.concat([{
       name: `og:image:alt`,
       content: altText
     }, {
       name: `og:image`,
       content: imageUrl
     }])
+  }
+
+  if (type === "article") {
+    if (data?.modified) ogCard.push({ name: `og:article:modified_time `, content: data.modified })
+    if (data?.published) ogCard.push({ name: `og:article:published_time`, content: data.published })
+
+    const jsonLdImage = data?.featuredImage?.node.localFile.childImageSharp.original.src
+
+    jsonLd.push({
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "dateModified": data?.modified,
+        "datePublished": data?.published,
+        "image": [`https://gurugoes.net${jsonLdImage}`],
+      })
+    })
   }
 
   return (
@@ -96,15 +117,15 @@ export default function SEO({ description = '', lang = "en", meta = [], title, d
         ...twitterCard,
         ...meta
       ]}
+      script={jsonLd}
       title={metaTitle}
       titleTemplate={`${siteTitle} · ${currentCategory && currentCategory !== 'all' && currentCategory !== metaTitle ? `${currentCategory} · ` : ''} ${siteTitle === metaTitle ? 'Home' : '%s'}`}
-
     />
   );
 }
 
 export const fragments = graphql`
-  fragment SeoFeaturedImage on WpMediaItem {
+  fragment OgSeoFeaturedImage on WpMediaItem {
     altText
     localFile {
       childImageSharp {
@@ -115,14 +136,28 @@ export const fragments = graphql`
     }
   }
 
+  fragment JsonLdSeoFeaturedImage on WpMediaItem {
+    altText
+    localFile {
+      childImageSharp {
+        original {
+          src
+        }
+      }
+    }
+  }
+
   fragment PostSeo on WpPost {
     title
     description: excerpt
+    modified: modifiedGmt(formatString: "YYYY-MM-DDTHH:mm:ss[Z]")
+    published: dateGmt(formatString: "YYYY-MM-DDTHH:mm:ss[Z]")
     featuredImage {
-        node {
-          ...SeoFeaturedImage
-        }
+      node {
+        ...OgSeoFeaturedImage
+        ...JsonLdSeoFeaturedImage
       }
+    }
   }
 
   fragment CategorySeo on WpCategory {
@@ -135,7 +170,7 @@ export const fragments = graphql`
     description: excerpt
     featuredImage {
         node {
-          ...SeoFeaturedImage
+          ...OgSeoFeaturedImage
         }
       }
   }

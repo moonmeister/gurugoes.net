@@ -13,7 +13,7 @@ export default function PostPage({ data }) {
   setCurrentCategory(category.name)
   return (
     <>
-      <SEO data={data.wpPost} />
+      <SEO type="article" data={data.wpPost} />
       <div class="relative py-16 bg-white rounded-3xl overflow-hidden">
         <article class="relative px-4 sm:px-6 lg:px-8">
           <header class="text-lg max-w-prose mx-auto">
