@@ -9,7 +9,7 @@ exports.createResolvers = ({ createResolvers }) => {
         type: 'String',
         resolve: source => {
           const excerpt = source?.excerpt ?? ""
-          return excerpt.replace(/<[^>]*>?/gm, '');
+          return excerpt.replace(/<[^>]*>?/gm, '').trim();
         }
       }
     };
