@@ -12,7 +12,9 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "debug": "gatsby build",
+    "postinstall": "patch-package"
   },
   "license": "0BSD",
   "dependencies": {
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7",
+    "patch-package": "^6.2.2",
     "webpack": "^4"
   }
 }
