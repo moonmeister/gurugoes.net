@@ -4,12 +4,12 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import { Link } from '../button'
-import { Time } from '../time'
+import { Time, ReadingTime } from '../time'
 
 export function ArchiveView({ posts: staticPosts, pageInfo }) {
 
   return (
-    < div class="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8" >
+    < div class="relative pt-4 m:pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8" >
       <div class="relative max-w-7xl mx-auto">
         <div class="mt-12 mx-auto grid gap-5 max-w-lg md:max-w-xl md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
           {/* <pre>
@@ -74,9 +74,9 @@ export function ArchiveView({ posts: staticPosts, pageInfo }) {
                           <Time dateTime={dateGmt} />
                           <span aria-hidden="true">
                             &middot;
-                        </span>
+                          </span>
                           <span>
-                            {readingTime?.text}
+                            <ReadingTime {...readingTime} />
                           </span>
                         </div>
                       </div>
@@ -113,7 +113,7 @@ export const fragment = graphql`
       }
     }
     readingTime {
-      text
+      ...ReadingTime
     }
     categories {
       nodes {

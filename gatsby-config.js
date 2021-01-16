@@ -8,6 +8,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.gurugoes.net",
     title: "gurugoes.net",
+    twitterHandle: "@moon_meister"
   },
   plugins: [
     /* Source Plugins*/
@@ -47,18 +48,18 @@ module.exports = {
     /* Gatsby Feature Plugins */
     "gatsby-plugin-layout",
     "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
     /* Third Party Integration Plugins */
     "gatsby-plugin-postcss",
-    "gatsby-plugin-linaria",
     "gatsby-plugin-preact",
-    "gatsby-plugin-react-helmet",
 
     /* Misc Utilities to generate misc site related structured content */
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        name: "Guru Goes",
+        icon: "src/images/activity.svg",
       },
     },
 
