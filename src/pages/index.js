@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import { ArchiveView } from "../components/post/Archive"
 import SEO from "../components/seo"
@@ -10,7 +10,7 @@ import { useCategoryContext } from "../hooks/CategoryContext"
 
 export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPage } }) {
 
-  const { title, content } = wpPage
+  const { title, content, featuredImage: { node: featuredImage } } = wpPage
 
   const { setCurrentCategory } = useCategoryContext()
   setCurrentCategory('all')
@@ -19,13 +19,9 @@ export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPa
       <SEO data={wpPage} />
       <section class="sm:grid items-center grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 lg:gap-16 md:gap-8 gap-4">
         <div class="p-8 sm:p-4 sm:col-start-1 sm:col-end-2">
-          <StaticImage
-            src="../images/headshot.jpg"
-            layout="fluid"
-            placeholder="blurred"
-            maxWidth={250}
-            alt="Guru Selfie while hiking PCT"
-
+          <GatsbyImage
+            image={getImage(featuredImage.localFile)}
+            alt={featuredImage.altText}
             className="rounded-full"
           />
         </div>
@@ -34,7 +30,7 @@ export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPa
             <span class="block xl:inline">{title}</span>
             {/* <span class="block text-indigo-600 xl:inline">hiking / backpacking / traveling / etcetera</span> */}
           </h1>
-          <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl" dangerouslySetInnerHTML={{
+          <div class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl" dangerouslySetInnerHTML={{
             __html: content
           }} />
         </div>
@@ -52,6 +48,16 @@ export const query = graphql`
     wpPage(isFrontPage: {eq: true}) {
       title
       content
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH, placeholder: DOMINANT_COLOR)
+            }
+          }
+        }
+      }
       ...PageSeo
     }
 

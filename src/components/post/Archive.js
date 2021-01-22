@@ -33,7 +33,7 @@ export function ArchiveView({ posts: staticPosts, pageInfo }) {
                     {featuredImage?.node?.localFile ? <GatsbyImage
                       class="h-48 w-full object-cover"
                       image={getImage(featuredImage.node.localFile)}
-                      alt=""
+                      alt={featuredImage.node.altText}
                     /> : <div className="h-48 bg-green-600" />}
                   </div>
                   <div class="flex-1 bg-white p-6 flex flex-col justify-between">
@@ -105,9 +105,10 @@ export const fragment = graphql`
     uri
     featuredImage {
       node {
+        altText
         localFile {
           childImageSharp {
-            gatsbyImageData(layout: FLUID, maxWidth: 250, placeholder: DOMINANT_COLOR)
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: DOMINANT_COLOR)
           }
         }
       }
