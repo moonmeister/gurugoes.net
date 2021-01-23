@@ -5,9 +5,14 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { useCategoryContext } from "../hooks/CategoryContext"
 
 export default function SEO({ description = '', lang = "en", type = "website", meta = [], title, data = {} }) {
-  const { wp: { generalSettings: { siteTitle, siteDescription } } } = useStaticQuery(
+  const { wp: { generalSettings: { siteTitle, siteDescription } }, site: { siteMetadata: { siteUrl } } } = useStaticQuery(
     graphql`
       query {
+        site {
+          siteMetadata {
+            siteUrl
+          }
+        }
         wp{
           generalSettings {
             siteTitle: title
@@ -64,7 +69,7 @@ export default function SEO({ description = '', lang = "en", type = "website", m
   if (featuredImage) {
     const { altText, localFile } = featuredImage
 
-    const imageUrl = `https://gurugoes.net${localFile?.childImageSharp.resize.src}`
+    const imageUrl = `${siteUrl}${localFile?.childImageSharp.resize.src}`
 
     twitterCard = twitterCard.concat([{
       name: `twitter:image:alt`,
@@ -99,7 +104,7 @@ export default function SEO({ description = '', lang = "en", type = "website", m
         "abstract": metaDescription,
         "dateModified": data?.modified,
         "datePublished": data?.published,
-        "image": [`https://gurugoes.net${jsonLdImage}`],
+        "image": [`${siteUrl}${jsonLdImage}`],
       })
     })
   }

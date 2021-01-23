@@ -1,38 +1,33 @@
 require("dotenv").config()
 
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://moonmeister.net',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env;
+
+const isProduction = NETLIFY_ENV === 'production';
+const siteUrl = isProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
 module.exports = {
   flags: {
     FAST_DEV: true,
     FAST_REFRESH: true,
   },
   siteMetadata: {
-    siteUrl: "https://www.gurugoes.net",
+    siteUrl,
     title: "gurugoes.net",
     twitterHandle: "@moon_meister"
   },
   plugins: [
     /* Source Plugins*/
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
       resolve: "gatsby-source-wordpress-experimental",
       options: {
         url: "https://cms.gurugoes.net/graphql",
       },
     },
-    // {
-    //   resolve: "gatsby-source-strava",
-    //   options: {
-    //     stravaClientId: process.env.STRAVA_CLIENT_ID,
-    //     stravaClientSecret: process.env.STRAVA_CLIENT_SECRET,
-    //     stravaToken: process.env.STRAVA_TOKEN,
-    //   },
-    // },
 
     /* Data transformer Plugins */
     {
@@ -56,15 +51,97 @@ module.exports = {
     /* Misc Utilities to generate misc site related structured content */
     "gatsby-plugin-sitemap",
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [
+          { userAgent: '*', allow: '/' },
+        ],
+      },
+    },
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: "Guru Goes",
         icon: "src/images/activity.svg",
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({
+              query: {
+                site,
+                allWpPost: { nodes: allPosts },
+              },
+            }) =>
+              allPosts.map(
+                ({
+                  title,
+                  excerpt,
+                  uri,
+                  dateGmt,
+                  author: { node: author },
+                  categories,
+                }) => ({
+                  title,
+                  description: excerpt,
+                  author: author.name,
+                  date: dateGmt,
+                  categories: categories.nodes.map((node) => node.name),
+                  url: `${site.siteMetadata.siteUrl}${uri}`,
+                })
+              ),
+            query: `
+              {
+                allWpPost(
+                  sort: {fields: [dateGmt], order: DESC}
+                ) {
+                  nodes {
+                    title
+                    dateGmt
+                    uri
+                    excerpt
+                    categories {
+                      nodes{
+                        name
+                      }
+                    }
+                    author{
+                      node {
+                        name
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: "Guru Goes RSS Feed",
+          },
+        ],
+      },
+    },
 
     /* Hosting and backend plugins */
     "gatsby-plugin-netlify",
+    {
+      resolve: `gatsby-plugin-goatcounter`,
+      options: {
+        code: isProduction ? 'gg-prod' : 'gg-dev',
+        allowLocal: !isProduction,
+      },
+    },
 
     /* Build Plugins */
     "gatsby-plugin-webpack-size",
