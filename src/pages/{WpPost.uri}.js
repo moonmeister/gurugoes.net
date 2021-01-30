@@ -28,7 +28,7 @@ export default function PostPage({ data }) {
               <ReadingTime {...readingTime} />
             </div>
           </header>
-          <div class="mt-6 prose prose-green prose-lg text-gray-500 mx-auto" dangerouslySetInnerHTML={{ __html: content }} />
+          <div class="wp-blocks mt-6 prose prose-green prose-lg text-gray-500 mx-auto" dangerouslySetInnerHTML={{ __html: content }} />
         </article>
       </div>
     </>
