@@ -135,7 +135,7 @@ module.exports = {
     /* Hosting and backend plugins */
     "gatsby-plugin-netlify",
     {
-      resolve: `gatsby-plugin-ackee`,
+      resolve: `gatsby-plugin-ackee-tracker`,
       options: {
         domainId: isProduction ? 'e8ade4ca-ac4c-47f5-9502-50190d3078ee' : '271fde55-0971-4be5-a29d-b5e8d90b2dc7',
         server: 'https://track.moonmeister.net',
