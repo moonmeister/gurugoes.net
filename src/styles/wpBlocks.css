@@ -40,7 +40,6 @@
     }
   }
 
-
   /* Block: Paragraph  ------------------------- */
 
   .has-text-align-center {
@@ -97,7 +96,7 @@
 
       &::before {
         @apply font-serif text-secondary-500 text-2xl;
-        content: '\00b7 \00b7 \00b7';
+        content: "\00b7 \00b7 \00b7";
         letter-spacing: 2em;
         padding-left: 2em;
       }
@@ -128,7 +127,7 @@
       }
 
       p::before {
-        content: '❝';
+        content: "❝";
         @apply text-blue-600 absolute leading-none;
         font-size: 6rem;
         top: -1rem;
@@ -195,7 +194,7 @@
         @apply absolute inset-0;
         background-color: inherit;
         opacity: 0.5;
-        content: '';
+        content: "";
         z-index: 1;
       }
 
@@ -292,31 +291,27 @@
     }
   }
 
- /* Block: Gallery  ------------------------- */
+  /* Block: Gallery  ------------------------- */
 
   .wp-block-gallery {
     * {
-      //overides prose defaults
       @apply m-0 p-0;
     }
     .blocks-gallery-grid {
       @apply flex gap-4 flex-wrap;
-
     }
 
     .blocks-gallery-item {
       @apply relative list-none min-w-0 flex justify-center flex-col;
       flex: 1;
 
-      a, .gatsby-image-wrapper {
+      a,
+      .gatsby-image-wrapper {
         @apply min-w-0 h-full object-cover;
       }
 
-
-
       figure {
         @apply flex items-end justify-center h-full;
-        
 
         figcaption {
           @apply absolute bottom-0 w-full max-h-full text-white text-sm text-center;
@@ -374,7 +369,7 @@
       text-decoration: none;
     }
     abbr::after {
-      content: '(' attr(title) ')';
+      content: "(" attr(title) ")";
     }
   }
 }

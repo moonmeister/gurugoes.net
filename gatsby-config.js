@@ -13,7 +13,6 @@ const siteUrl = isProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 module.exports = {
   flags: {
     FAST_DEV: true,
-    FAST_REFRESH: true,
   },
   siteMetadata: {
     siteUrl,
@@ -23,7 +22,7 @@ module.exports = {
   plugins: [
     /* Source Plugins*/
     {
-      resolve: "gatsby-source-wordpress-experimental",
+      resolve: "gatsby-source-wordpress",
       options: {
         url: "https://cms.gurugoes.net/graphql",
       },
