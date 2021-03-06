@@ -135,10 +135,12 @@ module.exports = {
     /* Hosting and backend plugins */
     "gatsby-plugin-netlify",
     {
-      resolve: `gatsby-plugin-goatcounter`,
+      resolve: `gatsby-plugin-ackee`,
       options: {
-        code: isProduction ? 'gg-prod' : 'gg-dev',
-        allowLocal: !isProduction,
+        domainId: isProduction ? 'e8ade4ca-ac4c-47f5-9502-50190d3078ee' : '271fde55-0971-4be5-a29d-b5e8d90b2dc7',
+        server: 'https://track.moonmeister.net',
+        ignoreOwnVisits: isProduction,
+        ignoreLocalhost: isProduction,
       },
     },
 
