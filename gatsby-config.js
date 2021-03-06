@@ -1,14 +1,13 @@
-require("dotenv").config()
+if (process.env.GATSBY_CLOUD !== true) {
+  require("dotenv").config()
+}
 
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://moonmeister.net',
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env;
 
-const isProduction = NETLIFY_ENV === 'production';
-const siteUrl = isProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+const isProduction = NODE_ENV === 'production';
+const siteUrl = 'https://gurugoes.net';
 
 module.exports = {
   flags: {
@@ -133,7 +132,7 @@ module.exports = {
     },
 
     /* Hosting and backend plugins */
-    "gatsby-plugin-netlify",
+    "gatsby-plugin-gatsby-cloud",
     {
       resolve: `gatsby-plugin-goatcounter`,
       options: {
