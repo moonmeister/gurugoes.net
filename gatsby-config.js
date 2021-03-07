@@ -23,7 +23,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        url: "https://cms.gurugoes.net/graphql",
+        url: "https://gurugoes.api.moonmeister.net/graphql",
       },
     },
 

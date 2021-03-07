@@ -19,7 +19,6 @@
     "autoprefixer": "^10.2.5",
     "dotenv": "^8.2.0",
     "gatsby": "^3.0.3",
-    "gatsby-image": "^3.0.0",
     "gatsby-plugin-ackee-tracker": "^2.2.0",
     "gatsby-plugin-feed": "^3.0.0",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
