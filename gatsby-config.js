@@ -140,6 +140,7 @@ module.exports = {
         server: 'https://track.moonmeister.net',
         ignoreOwnVisits: isProduction,
         ignoreLocalhost: isProduction,
+        detailed: true,
       },
     },
 
