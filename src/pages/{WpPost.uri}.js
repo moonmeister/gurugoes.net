@@ -7,6 +7,8 @@ import { useCategoryContext } from "../hooks/CategoryContext"
 import { Time, ReadingTime } from "../components/time"
 import SEO from "../components/seo"
 
+import "../styles/wpBlocks.css"
+
 export default function PostPage({ data }) {
   const { wpPost: { content, title, dateGmt, readingTime, categories: { nodes: [category] } } } = data
   const { setCurrentCategory } = useCategoryContext()
