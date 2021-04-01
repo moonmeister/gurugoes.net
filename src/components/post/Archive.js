@@ -46,7 +46,7 @@ export function ArchiveView({ posts: staticPosts, pageInfo }) {
                           </Link>))
                         }
                       </p>
-                      <Link to={uri} className="block mt-2" override>
+                      <Link to={uri} className="block mt-4" override>
                         <p className="text-xl font-semibold text-gray-900">
                           {title}
                         </p>
