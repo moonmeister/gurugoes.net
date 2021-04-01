@@ -2,36 +2,21 @@ import * as React from "react"
 import { graphql } from "gatsby"
 
 import { useCategoryContext } from "../hooks/CategoryContext"
-
-
-import { Time, ReadingTime } from "../components/time"
+import PostContent from "../components/post/Content"
 import SEO from "../components/seo"
 
-import "../styles/wpBlocks.css"
 
-export default function PostPage({ data }) {
-  const { wpPost: { content, title, dateGmt, readingTime, categories: { nodes: [category] } } } = data
+export default function PostPage({ data: { wpPost } }) {
+  const { categories: { nodes: [category] } } = wpPost
+
   const { setCurrentCategory } = useCategoryContext()
   setCurrentCategory(category.name)
+
   return (
     <>
-      <SEO type="article" data={data.wpPost} />
-      <div class="relative py-16 bg-white rounded-3xl overflow-hidden">
-        <article class="relative px-4 sm:px-6 lg:px-8">
-          <header class="text-lg max-w-prose mx-auto">
-            <h1>
-              <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{title}</span>
-            </h1>
-            <div class="text-center text-sm text-gray-500 leading-8">
-              <Time dateTime={dateGmt} />
-              <span aria-hidden="true">
-                &nbsp;&middot;&nbsp;
-              </span>
-              <ReadingTime {...readingTime} />
-            </div>
-          </header>
-          <div class="wp-blocks mt-6 prose prose-green prose-lg text-gray-500 mx-auto" dangerouslySetInnerHTML={{ __html: content }} />
-        </article>
+      <SEO type="article" data={wpPost} />
+      <div className="relative bg-white rounded-3xl overflow-hidden">
+        <PostContent data={wpPost} />
       </div>
     </>
   )
@@ -40,14 +25,9 @@ export default function PostPage({ data }) {
 export const query = graphql`
   query blogPostQuery($uri: String!) {
     wpPost(uri: { eq: $uri }) {
-      title
-      content
-      dateGmt
-      readingTime {
-        ...ReadingTime
-      }
+      ...PostContent
       ...PostSeo
-      
+    
       categories {
         nodes {
           name

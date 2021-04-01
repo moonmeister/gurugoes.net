@@ -10,13 +10,11 @@
     @apply block mt-6;
 
     figure {
-      @apply table;
+      @apply flex flex-col max-w-min;
     }
 
     figcaption {
-      @apply table-caption m-2 text-sm;
-
-      caption-side: bottom;
+      @apply m-2 text-sm text-center;
     }
 
     .aligncenter {
