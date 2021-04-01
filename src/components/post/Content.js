@@ -32,10 +32,10 @@ export default function PostContent({ data }) {
           <ReadingTime {...readingTime} />
         </div>
       </header>
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="my-16 px-4 sm:px-6 lg:px-8">
         <div className="wp-blocks mt-6 prose max-w-prose prose-green prose-lg text-gray-500 mx-auto" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
-    </article >
+    </article>
   )
 }
 
