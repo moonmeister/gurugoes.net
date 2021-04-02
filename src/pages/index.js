@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import { ArchiveView } from "../components/post/Archive"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 import { useCategoryContext } from "../hooks/CategoryContext"
 
@@ -16,7 +16,7 @@ export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPa
   setCurrentCategory('all')
   return (
     <>
-      <SEO data={wpPage} />
+      <Seo data={wpPage} />
       <section className="sm:grid items-center grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 lg:gap-16 md:gap-8 gap-4">
         <div className="p-8 sm:p-4 sm:col-start-1 sm:col-end-2">
           <GatsbyImage

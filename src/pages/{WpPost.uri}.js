@@ -3,18 +3,18 @@ import { graphql } from "gatsby"
 
 import { useCategoryContext } from "../hooks/CategoryContext"
 import PostContent from "../components/post/Content"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 
 export default function PostPage({ data: { wpPost } }) {
   const { categories: { nodes: [category] } } = wpPost
 
   const { setCurrentCategory } = useCategoryContext()
-  setCurrentCategory(category.name)
+  setCurrentCategory("show-all")
 
   return (
     <>
-      <SEO type="article" data={wpPost} />
+      <Seo type="article" data={wpPost} />
       <div className="relative bg-white rounded-3xl overflow-hidden">
         <PostContent data={wpPost} />
       </div>

@@ -6,7 +6,7 @@ import { graphql } from "gatsby"
 import { useCategoryContext } from "../hooks/CategoryContext"
 
 import { ArchiveView } from "../components/post/Archive"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 export default function CategoryPage({ data }) {
   const { wpCategory: { name, description, }, allWpPost: { posts, pageInfo } } = data
@@ -15,7 +15,7 @@ export default function CategoryPage({ data }) {
   setCurrentCategory(name)
   return (
     <>
-      <SEO data={data.wpCategory} />
+      <Seo data={data.wpCategory} />
       <section className="">
         <div className="text-center">
           <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
