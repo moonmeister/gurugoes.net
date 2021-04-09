@@ -1,39 +1,56 @@
 import * as React from "react"
-
 import { useForm } from "react-hook-form";
 
-const onSubmit = data => console.log(data);
+import { useAddComment } from "../../hooks/comments"
 
-const { register, handleSubmit, errors } = useForm();
+import LoginForm from "./login"
+import { useAuth, ProvideAuth } from "../../hooks/use-auth"
+
+export default function SubmitComment({ data: { commentStatus, databaseId } }) {
+
+  const { user, signout } = useAuth()
+
+  const { mutate, isLoading, isError, error: mutationError } = useAddComment()
+
+  const onSubmit = (formData) => {
+
+    const data = { ...formData, ...user, commentOn: databaseId }
+
+    mutate(data)
+  };
+
+  const { register, handleSubmit, errors, reset, formState: { isSubmitSuccessful } } = useForm({
+    defaultValues: { comment: "" }
+  });
 
 
-export default function SubmitComment({ commentStatus }) {
-  const { commentStatus } = data
 
   return (
-    <div>
-      {
-        commentStatus === 'closed' ? <p>Comments are disabled for this post</p> :
-          <>
-            <h2> leave a comment</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <label>Name
-                      <input type="text" name="name" ref={register({ required: true })} />
-              </label>
+    <ProvideAuth>
+      <div>
+        {
+          commentStatus === 'closed' ? <p>Comments are disabled for this post</p> :
+            (
+              user ?
+                <>
+                  <heading>
+                    <h2> leave a comment</h2>
+                    <div><p>Commenting as {user.name}{`<${user.email}>`}</p> <button type="button" onClick={() => signout()}>Logout</button> </div>
+                  </heading>
 
-              <label>Email
-                      <input type="email" name="email" ref={register({ required: true })} />
-              </label>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <label>Comment
+                      <textarea name="comment" ref={register({ required: true })} ></textarea>
+                    </label>
 
-              <label>Comment
-                      <textarea name="comment" ref={register({ required: true })}></textarea>
-              </label>
-
-              {errors.exampleRequired && <span>This field is required</span>}
-              <input type="submit" />
-            </form>
-          </>
-      }
-    </div>
+                    {errors.comment && <span>This field is required</span>}
+                    <input type="submit" value={isLoading ? "Submitting..." : "Submit"} />
+                    {isError ? <span>Error: <span dangerouslySetInnerHTML={{ __html: mutationError.response.errors[0].message }} /></span> : null}
+                  </form>
+                </>
+                : <LoginForm />)
+        }
+      </div>
+    </ProvideAuth>
   )
 }

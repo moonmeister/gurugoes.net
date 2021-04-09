@@ -1,4 +1,5 @@
-function useLocalStorage(key, initialValue) {
+import { useState } from "react"
+export function useLocalStorage(key, initialValue) {
 
   // State to store our value
 
