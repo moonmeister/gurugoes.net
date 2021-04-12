@@ -32,6 +32,7 @@
     "gatsby-plugin-react-helmet": "^4.2.0",
     "gatsby-plugin-readingtime": "^2.0.0",
     "gatsby-plugin-robots-txt": "^1.5.5",
+    "gatsby-plugin-relative-ci": "^1.0.0",
     "gatsby-plugin-sharp": "^3.2.1",
     "gatsby-plugin-sitemap": "^3.2.0",
     "gatsby-plugin-webpack-size": "^2.0.1",
