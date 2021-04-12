@@ -146,5 +146,7 @@ module.exports = {
 
     /* Build Plugins */
     "gatsby-plugin-webpack-size",
+    "gatsby-plugin-relative-ci",
+
   ],
 };
