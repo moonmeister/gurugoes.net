@@ -1,19 +1,27 @@
-import * as React from "react"
+import * as React from 'react';
 
-import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import { ArchiveView } from "../components/post/Archive"
-import Seo from "../components/seo"
+import { ArchiveView } from '../components/post/Archive';
+import Seo from '../components/seo';
 
-import { useCategoryContext } from "../hooks/CategoryContext"
+import { useCategoryContext } from '../hooks/CategoryContext';
 
-export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPage } }) {
+export default function IndexPage({
+  data: {
+    allWpPost: { posts, pageInfo },
+    wpPage,
+  },
+}) {
+  const {
+    title,
+    content,
+    featuredImage: { node: featuredImage },
+  } = wpPage;
 
-  const { title, content, featuredImage: { node: featuredImage } } = wpPage
-
-  const { setCurrentCategory } = useCategoryContext()
-  setCurrentCategory('all')
+  const { setCurrentCategory } = useCategoryContext();
+  setCurrentCategory('all');
   return (
     <>
       <Seo data={wpPage} />
@@ -31,22 +39,24 @@ export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPa
             <span className="block xl:inline">{title}</span>
             {/* <span className="block text-indigo-600 xl:inline">hiking / backpacking / traveling / etcetera</span> */}
           </h1>
-          <div className="mt-3 max-w-md mx-auto text-base text-gray-600 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl" dangerouslySetInnerHTML={{
-            __html: content
-          }} />
+          <div
+            className="mt-3 max-w-md mx-auto text-base text-gray-600 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+            dangerouslySetInnerHTML={{
+              __html: content,
+            }}
+          />
         </div>
       </section>
       <section>
         <ArchiveView posts={posts} pageInfo={pageInfo} />
       </section>
     </>
-
-  )
+  );
 }
 
 export const query = graphql`
   {
-    wpPage(isFrontPage: {eq: true}) {
+    wpPage(isFrontPage: { eq: true }) {
       title
       content
       featuredImage {
@@ -54,7 +64,11 @@ export const query = graphql`
           altText
           localFile {
             childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH, placeholder: DOMINANT_COLOR, formats: [AUTO, WEBP, AVIF])
+              gatsbyImageData(
+                layout: FULL_WIDTH
+                placeholder: DOMINANT_COLOR
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }
@@ -62,13 +76,10 @@ export const query = graphql`
       ...PageSeo
     }
 
-    allWpPost(sort: {order: DESC, fields: dateGmt}) {
-      pageInfo {
-        ...ArchivePostPageInfo
-      }
+    allWpPost(sort: { order: DESC, fields: dateGmt }) {
       posts: nodes {
         ...ArchivePost
       }
     }
   }
-`
+`;
