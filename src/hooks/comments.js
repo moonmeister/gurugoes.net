@@ -15,7 +15,8 @@ export function useAddComment() {
       console.error(error.response.errors[0].message)
     },
     onSuccess(data) {
-      console.log("Success!")
+      console.log("Success!", data)
+      return data
     }
   })
 

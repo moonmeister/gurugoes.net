@@ -14,14 +14,13 @@ export function ProvideAuth({ children }) {
 
 // Hook for child components to get the auth object ...
 // ... and re-render when it changes.
-export const useAuth = () => {
+export function useAuth() {
   return useContext(authContext);
 };
 
 // Provider hook that creates auth object and handles state
-
 function useProvideAuth() {
-  const [user, setUser] = useLocalStorage('user-info', null)
+  const [user, setUser] = useLocalStorage('user-info', false)
 
 
   // ... to save the user to state.
@@ -31,7 +30,7 @@ function useProvideAuth() {
 
 
   const signout = () => {
-    return setUser(null)
+    return setUser(false)
   };
 
   return {

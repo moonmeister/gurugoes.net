@@ -7,15 +7,9 @@ export default function LoginForm() {
 
   const { signin } = useAuth()
 
-  // const onSubmit = data => {
-  //   signin(data)
-  // }
-
   return (
     <form onSubmit={handleSubmit(signin)}>
-
       <div>
-
         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
         <div class="mt-1">
           <input id="name" type="text" name="name" ref={register({ required: true })} class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Billy Gene" aria-describedby="name-description" />
