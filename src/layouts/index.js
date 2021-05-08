@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Helmet } from "react-helmet"
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
 
-import { CategoryProvider } from "../hooks/CategoryContext"
-import { Header } from "../components/header"
-import { Footer } from "../components/footer"
+import { CategoryProvider } from '../hooks/CategoryContext';
+import { Header } from '../components/header';
+import { Footer } from '../components/footer';
 
 import '../styles/global.css';
 
@@ -11,7 +11,10 @@ export default function Layout({ children }) {
   return (
     <CategoryProvider>
       <Helmet>
-        <link rel="stylesheet preload" href="https://rsms.me/inter/inter.css"></link>
+        <link
+          rel="stylesheet preload"
+          href="https://rsms.me/inter/inter.css"
+        ></link>
       </Helmet>
       <div className="grid auto-cols-auto grid-cols-1">
         <header className="row-start-1 row-end-2 col-start-1 col-end-2 z-10 p-4">
@@ -31,5 +34,5 @@ export default function Layout({ children }) {
         </footer>
       </div>
     </CategoryProvider>
-  )
+  );
 }

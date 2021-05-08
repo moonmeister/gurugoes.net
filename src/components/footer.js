@@ -1,26 +1,25 @@
-import * as React from "react"
+import * as React from 'react';
 
-import { ExtLink } from "./button"
+import { ExtLink } from './button';
 
-import { Instagram, Twitter } from "./icons/social"
+import { Instagram, Twitter } from './icons/social';
 
 const Socials = [
   {
     name: 'Instagram',
     handle: '@moon_meister',
     link: 'https://www.instagram.com/moon_meister/',
-    Icon: Instagram
+    Icon: Instagram,
   },
   {
     name: 'Twitter',
     handle: '@moon_meister',
     link: 'https://twitter.com/moon_meister',
-    Icon: Twitter
-  }
-]
+    Icon: Twitter,
+  },
+];
 
 export function Footer() {
-
   return (
     <>
       {/* <!-- This example requires Tailwind CSS v2.0+ --> */}
@@ -30,15 +29,15 @@ export function Footer() {
             <ExtLink href={link} title={`${name} - ${handle}`} override={false}>
               <span className="sr-only">{name}</span>
               <Icon />
-            </ExtLink>))
-          }
+            </ExtLink>
+          ))}
         </div>
         <div className="mt-8 md:mt-0 md:order-1">
           <p className="text-center text-base text-gray-500">
             &copy;{new Date().getFullYear()} Alex Moon. All rights reserved.
-      </p>
+          </p>
         </div>
       </div>
     </>
-  )
+  );
 }

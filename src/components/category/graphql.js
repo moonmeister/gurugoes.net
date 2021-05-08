@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
 export const fragment = graphql`
   fragment PostCategory on WpCategory {
@@ -7,7 +7,7 @@ export const fragment = graphql`
   }
 
   fragment AllUsedCategories on Query {
-    allWpCategory(filter: {count: { ne: null }}) {
+    allWpCategory(filter: { count: { ne: null } }) {
       edges {
         node {
           ...PostCategory
@@ -15,4 +15,4 @@ export const fragment = graphql`
       }
     }
   }
-`
+`;

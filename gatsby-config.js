@@ -1,10 +1,8 @@
 if (process.env.GATSBY_CLOUD !== true) {
-  require("dotenv").config()
+  require('dotenv').config();
 }
 
-const {
-  NODE_ENV,
-} = process.env;
+const { NODE_ENV } = process.env;
 
 const isProduction = NODE_ENV === 'production';
 const siteUrl = 'https://gurugoes.net';
@@ -15,15 +13,15 @@ module.exports = {
   },
   siteMetadata: {
     siteUrl,
-    title: "gurugoes.net",
-    twitterHandle: "@moon_meister"
+    title: 'gurugoes.net',
+    twitterHandle: '@moon_meister',
   },
   plugins: [
     /* Source Plugins*/
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: 'gatsby-source-wordpress',
       options: {
-        url: "https://gurugoes.api.moonmeister.net/graphql",
+        url: 'https://gurugoes.api.moonmeister.net/graphql',
       },
     },
 
@@ -32,35 +30,33 @@ module.exports = {
       resolve: `gatsby-plugin-readingtime`,
       options: {
         types: {
-          WpPost: (source) => source?.content ?? "",
+          WpPost: (source) => source?.content ?? '',
         },
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     /* Gatsby Feature Plugins */
-    "gatsby-plugin-layout",
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-layout',
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
     /* Third Party Integration Plugins */
-    "gatsby-plugin-postcss",
-    "gatsby-plugin-preact",
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-preact',
 
     /* Misc Utilities to generate misc site related structured content */
-    "gatsby-plugin-sitemap",
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [
-          { userAgent: '*', allow: '/' },
-        ],
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "Guru Goes",
-        icon: "src/images/activity.svg",
+        name: 'Guru Goes',
+        icon: 'src/images/activity.svg',
       },
     },
     {
@@ -125,18 +121,20 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Guru Goes RSS Feed",
+            title: 'Guru Goes RSS Feed',
           },
         ],
       },
     },
 
     /* Hosting and backend plugins */
-    "gatsby-plugin-gatsby-cloud",
+    'gatsby-plugin-gatsby-cloud',
     {
       resolve: `gatsby-plugin-ackee-tracker`,
       options: {
-        domainId: isProduction ? 'e8ade4ca-ac4c-47f5-9502-50190d3078ee' : '271fde55-0971-4be5-a29d-b5e8d90b2dc7',
+        domainId: isProduction
+          ? 'e8ade4ca-ac4c-47f5-9502-50190d3078ee'
+          : '271fde55-0971-4be5-a29d-b5e8d90b2dc7',
         server: 'https://track.moonmeister.net',
         ignoreOwnVisits: isProduction,
         ignoreLocalhost: isProduction,
@@ -145,8 +143,7 @@ module.exports = {
     },
 
     /* Build Plugins */
-    "gatsby-plugin-webpack-size",
-    "gatsby-plugin-relative-ci",
-
+    'gatsby-plugin-webpack-size',
+    'gatsby-plugin-relative-ci',
   ],
 };
