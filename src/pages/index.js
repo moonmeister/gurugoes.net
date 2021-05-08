@@ -23,6 +23,7 @@ export default function IndexPage({ data: { allWpPost: { posts, pageInfo }, wpPa
             image={getImage(featuredImage.localFile)}
             alt={featuredImage.altText}
             className="rounded-full"
+            loading="eager"
           />
         </div>
         <div className="text-center sm:col-start-2 sm:col-end-4">
