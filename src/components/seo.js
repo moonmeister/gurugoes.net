@@ -2,10 +2,24 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import { useCategoryContext } from "../hooks/CategoryContext"
+import { useCategoryContext } from '../hooks/CategoryContext';
 
-export default function SEO({ description = '', lang = "en", type = "website", meta = [], title, data = {} }) {
-  const { wp: { generalSettings: { siteTitle, siteDescription } }, site: { siteMetadata: { siteUrl } } } = useStaticQuery(
+export default function SEO({
+  description = '',
+  lang = 'en',
+  type = 'website',
+  meta = [],
+  title,
+  data = {},
+}) {
+  const {
+    wp: {
+      generalSettings: { siteTitle, siteDescription },
+    },
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = useStaticQuery(
     graphql`
       query {
         site {
@@ -13,7 +27,7 @@ export default function SEO({ description = '', lang = "en", type = "website", m
             siteUrl
           }
         }
-        wp{
+        wp {
           generalSettings {
             siteTitle: title
             siteDescription: description
@@ -23,10 +37,10 @@ export default function SEO({ description = '', lang = "en", type = "website", m
     `
   );
 
-  const { currentCategory } = useCategoryContext()
+  const { currentCategory } = useCategoryContext();
 
   const metaDescription = description || data?.description || siteDescription;
-  const metaTitle = title || data?.title
+  const metaTitle = title || data?.title;
 
   let ogCard = [
     {
@@ -41,7 +55,7 @@ export default function SEO({ description = '', lang = "en", type = "website", m
       property: `og:type`,
       content: type,
     },
-  ]
+  ];
 
   let twitterCard = [
     {
@@ -60,53 +74,67 @@ export default function SEO({ description = '', lang = "en", type = "website", m
       name: `twitter:description`,
       content: metaDescription,
     },
-  ]
+  ];
 
   const jsonLd = [];
 
-  const featuredImage = data?.featuredImage?.node
+  const featuredImage = data?.featuredImage?.node;
 
   if (featuredImage) {
-    const { altText, localFile } = featuredImage
+    const { altText, localFile } = featuredImage;
 
-    const imageUrl = `${siteUrl}${localFile?.childImageSharp.resize.src}`
+    const imageUrl = `${siteUrl}${localFile?.childImageSharp.resize.src}`;
 
-    twitterCard = twitterCard.concat([{
-      name: `twitter:image:alt`,
-      content: altText,
-    },
-    {
-      name: `twitter:image`,
-      content: imageUrl
-    }])
+    twitterCard = twitterCard.concat([
+      {
+        name: `twitter:image:alt`,
+        content: altText,
+      },
+      {
+        name: `twitter:image`,
+        content: imageUrl,
+      },
+    ]);
 
-    ogCard = ogCard.concat([{
-      name: `og:image:alt`,
-      content: altText
-    }, {
-      name: `og:image`,
-      content: imageUrl
-    }])
+    ogCard = ogCard.concat([
+      {
+        name: `og:image:alt`,
+        content: altText,
+      },
+      {
+        name: `og:image`,
+        content: imageUrl,
+      },
+    ]);
   }
 
-  if (type === "article") {
-    if (data?.modified) ogCard.push({ name: `og:article:modified_time `, content: data.modified })
-    if (data?.published) ogCard.push({ name: `og:article:published_time`, content: data.published })
+  if (type === 'article') {
+    if (data?.modified)
+      ogCard.push({
+        name: `og:article:modified_time `,
+        content: data.modified,
+      });
+    if (data?.published)
+      ogCard.push({
+        name: `og:article:published_time`,
+        content: data.published,
+      });
 
-    const jsonLdImage = data?.featuredImage?.node.localFile.childImageSharp.original.src
+    const jsonLdImage =
+      data?.featuredImage?.node.localFile.childImageSharp.original.src;
 
     jsonLd.push({
-      type: "application/ld+json",
+      type: 'application/ld+json',
       innerHTML: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": metaTitle,
-        "abstract": metaDescription,
-        "dateModified": data?.modified,
-        "datePublished": data?.published,
-        "image": [`${siteUrl}${jsonLdImage}`],
-      })
-    })
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: metaTitle,
+        abstract: metaDescription,
+        dateModified: data?.modified,
+        datePublished: data?.published,
+        image: [`${siteUrl}${jsonLdImage}`],
+      }),
+    });
   }
 
   return (
@@ -121,11 +149,17 @@ export default function SEO({ description = '', lang = "en", type = "website", m
         },
         ...ogCard,
         ...twitterCard,
-        ...meta
+        ...meta,
       ]}
       script={jsonLd}
       title={metaTitle}
-      titleTemplate={`${siteTitle} · ${currentCategory && currentCategory !== 'all' && currentCategory !== metaTitle ? `${currentCategory} · ` : ''} ${siteTitle === metaTitle ? 'Home' : '%s'}`}
+      titleTemplate={`${siteTitle} · ${
+        currentCategory &&
+        currentCategory !== 'all' &&
+        currentCategory !== metaTitle
+          ? `${currentCategory} · `
+          : ''
+      } ${siteTitle === metaTitle ? 'Home' : '%s'}`}
     />
   );
 }
@@ -175,9 +209,9 @@ export const fragments = graphql`
     title
     description: cleanExcerpt
     featuredImage {
-        node {
-          ...OgSeoFeaturedImage
-        }
+      node {
+        ...OgSeoFeaturedImage
       }
+    }
   }
-`
+`;

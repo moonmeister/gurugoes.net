@@ -94,7 +94,7 @@
 
       &::before {
         @apply font-serif text-secondary-500 text-2xl;
-        content: "\00b7 \00b7 \00b7";
+        content: '\00b7 \00b7 \00b7';
         letter-spacing: 2em;
         padding-left: 2em;
       }
@@ -125,7 +125,7 @@
       }
 
       p::before {
-        content: "❝";
+        content: '❝';
         @apply text-blue-600 absolute leading-none;
         font-size: 6rem;
         top: -1rem;
@@ -192,7 +192,7 @@
         @apply absolute inset-0;
         background-color: inherit;
         opacity: 0.5;
-        content: "";
+        content: '';
         z-index: 1;
       }
 
@@ -367,7 +367,7 @@
       text-decoration: none;
     }
     abbr::after {
-      content: "(" attr(title) ")";
+      content: '(' attr(title) ')';
     }
   }
 }

@@ -28,10 +28,12 @@ export default function SubmitComment({ data: { databaseId } }) {
         keepIsSubmitted: true
       })
 
+    } catch (e) {
+      throw e
     }
 
 
-    
+
   };
 
 

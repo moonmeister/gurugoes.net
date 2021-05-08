@@ -25,8 +25,8 @@ export default function PostPage({ data: { wpPost } }) {
 }
 
 export const query = graphql`
-  query blogPostQuery($uri: String!) {
-    wpPost(uri: { eq: $uri }) {
+  query blogPostQuery($id: String!) {
+    wpPost(id: { eq: $id }) {
       ...PostContent
       ...PostSeo
       ...PostComments
