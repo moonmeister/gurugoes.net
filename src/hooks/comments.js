@@ -22,7 +22,7 @@ export function useAddComment() {
   return useMutation(async (data) => createComment(data), {
     onSuccess: ({ createComment }, { commentOn }) => {
       if (createComment.comment) {
-        queryClient.invalidateQueries(commentOn);
+        queryClient.invalidateQueries(`comments-${commentOn}`);
       }
     },
   });
