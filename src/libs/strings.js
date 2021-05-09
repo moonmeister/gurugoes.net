@@ -33,6 +33,19 @@ export function formatDate(dateString, locale) {
   });
 }
 
+export function formatDateTime(dateString, locale) {
+  const date = new Date(dateString);
+
+  return date.toLocaleString(locale, {
+    month: 'long',
+    year: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    dayPeriod: 'narrow',
+  });
+}
+
 const SECONDS_IN_UNIT = [
   [604800, 'W'],
   [86400, 'D'],

@@ -26,7 +26,8 @@ module.exports = {
   variants: {
     extend: {
       borderWidth: ['focus'],
+      backgroundColor: ['even'],
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
