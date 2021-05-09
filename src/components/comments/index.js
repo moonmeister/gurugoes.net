@@ -18,17 +18,14 @@ const LazyCommentSubmit = loadableVisibility(() => import('./submit'), {
 const queryClient = new QueryClient();
 
 export function CommentSection({ data }) {
-  const { commentStatus, commentCount, databaseId: postId } = data;
+  const { commentStatus, postId } = data;
 
   return (
     <section className="bg-green-600 p-8">
       <h1 className="text-lg font-bold py-4">Comments</h1>
       <QueryClientProvider client={queryClient}>
-        {commentCount === 0 ? (
-          <p>There are no comments.</p>
-        ) : (
-          <LazyComments postId={postId} />
-        )}
+
+        <LazyComments postId={postId} />
 
         {commentStatus === 'closed' ? (
           <div>Comments are disabled for this post</div>
@@ -45,15 +42,13 @@ export function CommentSection({ data }) {
 export const fragments = graphql`
   fragment PostComments on WpPost {
     databaseId
-    commentCount
     commentStatus
   }
 `;
 
 export function getCommentData(post) {
   return {
-    commentCount: post?.commentCount,
     commentStatus: post?.commentStatus,
-    databaseId: post?.databaseId,
+    postId: post?.databaseId,
   };
 }

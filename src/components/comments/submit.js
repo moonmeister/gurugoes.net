@@ -8,7 +8,7 @@ import { Label, Input, Description, Textarea, Submit, Error } from './inputs';
 import { useAddComment } from '../../hooks/comments';
 import { useAuth } from '../../hooks/use-auth';
 
-export default function SubmitComment({ data: { databaseId } }) {
+export default function SubmitComment({ data: { postId } }) {
   const { user, signout, signin } = useAuth();
 
   const { mutateAsync, isLoading } = useAddComment();
@@ -32,7 +32,7 @@ export default function SubmitComment({ data: { databaseId } }) {
       delete formData.rememberMe;
     }
 
-    const mutationData = { ...formData, commentOn: databaseId };
+    const mutationData = { ...formData, commentOn: postId };
 
     try {
       await mutateAsync(mutationData);
@@ -108,7 +108,7 @@ export default function SubmitComment({ data: { databaseId } }) {
                   aria-describedby="email-description"
                 />
                 <Description id="email-description">
-                  We'll only use this for spam.
+                  We'll only use this for spam prevention.
                 </Description>
                 <Error name="email" className="text-red-700 italic" />
               </Label>
