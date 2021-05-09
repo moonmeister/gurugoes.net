@@ -1,25 +1,29 @@
-import { useQuery, useMutation } from "react-query"
-
-import { listCommentsByPostId, createComment } from "../libs/wpGraphqlClient"
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { listCommentsByPostId, createComment } from '../libs/wpGraphqlClient';
 
 export function useComments(postId) {
-  return useQuery(`comments-${postId}`, async () => {
-    const { post: { comments: { nodes } } } = await listCommentsByPostId(postId)
-    return nodes
-  }, { staleTime: 1000 * 60 * 2, cacheTime: 1000 * 60 * 30 })
+  return useQuery(
+    `comments-${postId}`,
+    async () => {
+      const {
+        post: {
+          comments: { nodes },
+        },
+      } = await listCommentsByPostId(postId);
+      return nodes;
+    },
+    { staleTime: 1000 * 60 * 2, cacheTime: 1000 * 60 * 30 }
+  );
 }
 
 export function useAddComment() {
+  const queryClient = useQueryClient();
+
   return useMutation(async (data) => createComment(data), {
-    onError(error) {
-      console.error(error.response.errors[0].message)
+    onSuccess: ({ createComment }, { commentOn }) => {
+      if (createComment.comment) {
+        queryClient.invalidateQueries(commentOn);
+      }
     },
-    onSuccess(data) {
-      console.log("Success!", data)
-      return data
-    }
-  })
-
-
-
+  });
 }

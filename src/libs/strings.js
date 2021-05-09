@@ -42,7 +42,7 @@ export function formatDateTime(dateString, locale) {
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
-    dayPeriod: 'narrow'
+    dayPeriod: 'narrow',
   });
 }
 

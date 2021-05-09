@@ -1,7 +1,5 @@
-import React, { useContext, createContext } from "react";
-import { useLocalStorage } from "./use-local-storage"
-
-
+import React, { useContext, createContext } from 'react';
+import { useLocalStorage } from './use-local-storage';
 
 const authContext = createContext();
 
@@ -16,21 +14,19 @@ export function ProvideAuth({ children }) {
 // ... and re-render when it changes.
 export function useAuth() {
   return useContext(authContext);
-};
+}
 
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
-  const [user, setUser] = useLocalStorage('user-info', false)
-
+  const [user, setUser] = useLocalStorage('user-info', false);
 
   // ... to save the user to state.
   const signin = (user) => {
-    return setUser(user)
+    return setUser(user);
   };
 
-
   const signout = () => {
-    return setUser(false)
+    return setUser(false);
   };
 
   return {
