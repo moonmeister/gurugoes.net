@@ -42,7 +42,7 @@
     "gatsby-source-wordpress": "^5.5.0",
     "gatsby-transformer-sharp": "^3.5.0",
     "graphql-request": "^3.4.0",
-    "postcss": "^8.2.15",
+    "postcss": "^8.3.0",
     "postcss-nested": "^5.0.5",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.19",
