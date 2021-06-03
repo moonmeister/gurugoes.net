@@ -45,7 +45,34 @@ module.exports = {
     'gatsby-plugin-preact',
 
     /* Misc Utilities to generate misc site related structured content */
-    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        excludes: ['/category/*'],
+        query: `
+        {
+          allWpContentNode(filter: {nodeType: {in: ["Post", "Page"]}}) {
+            nodes {
+              ... on WpPost {
+                path: uri
+                modifiedGmt
+              }
+              ... on WpPage {
+                path: uri
+                modifiedGmt
+              }
+            }
+          }
+        }
+      `,
+        resolveSiteUrl: () => siteUrl,
+        resolvePages: ({ allWpContentNode: { nodes } }) => nodes,
+        serialize: ({ path, modifiedGmt }) => ({
+          url: path,
+          lastmod: modifiedGmt,
+        }),
+      },
+    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
