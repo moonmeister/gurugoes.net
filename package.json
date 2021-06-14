@@ -42,7 +42,7 @@
     "gatsby-source-wordpress": "^5.7.1",
     "gatsby-transformer-sharp": "^3.7.1",
     "graphql-request": "^3.4.0",
-    "postcss": "^8.3.0",
+    "postcss": "^8.3.4",
     "postcss-nested": "^5.0.5",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.19",
@@ -50,13 +50,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^7.8.1",
+    "react-hook-form": "^7.8.4",
     "react-loadable-visibility": "^3.0.2",
     "react-query": "^3.17.0",
     "tailwindcss": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
+    "@babel/core": "^7.14.5",
     "babel-preset-gatsby": "^1.7.1"
   },
   "resolutions": {
