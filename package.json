@@ -34,7 +34,7 @@
     "gatsby-plugin-react-helmet": "^4.11.0",
     "gatsby-plugin-readingtime": "^2.0.0",
     "gatsby-plugin-relative-ci": "^1.0.0",
-    "gatsby-plugin-robots-txt": "^1.6.8",
+    "gatsby-plugin-robots-txt": "^1.6.9",
     "gatsby-plugin-sharp": "^3.11.0",
     "gatsby-plugin-sitemap": "^4.7.0",
     "gatsby-plugin-webpack-size": "^2.0.1",
@@ -52,7 +52,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.12.2",
     "react-loadable-visibility": "^3.0.2",
-    "react-query": "^3.19.4",
+    "react-query": "^3.19.6",
     "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
