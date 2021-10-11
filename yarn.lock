@@ -6245,13 +6245,13 @@ gatsby-page-utils@^1.14.0:
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-gatsby-plugin-ackee-tracker@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-ackee-tracker/-/gatsby-plugin-ackee-tracker-3.0.2.tgz#201790777f3d1ce67f4abd6402d080d4072fdde7"
-  integrity sha512-cph0D0sPrHgMUUnF3fwaUOWJb+8LD8kCu0be5+/+yBJqER3kd5li2jAPQ1jb9N2DSVab2uInEZl+3CZOHO6Z/g==
+gatsby-plugin-ackee-tracker@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-ackee-tracker/-/gatsby-plugin-ackee-tracker-3.0.3.tgz#9a9714925d6f4c78640988699b0cc3cbaa2f252c"
+  integrity sha512-bQJbCFM5CDD9HQEqYKCxE8csi9SBsI745wiHjeZtXLlj/+aQ0/GCE/nB4uu/YTYImAPtL7D//CTlULogE6cTRw==
   dependencies:
     "@babel/cli" "^7.15.7"
-    "@babel/core" "^7.15.5"
+    "@babel/core" "^7.15.8"
     ackee-tracker "^5"
     babel-preset-gatsby-package "^1.14.0"
     cross-env "^7.0.3"
@@ -6376,10 +6376,10 @@ gatsby-plugin-readingtime@^2.1.0:
   dependencies:
     reading-time "^1.5.0"
 
-gatsby-plugin-relative-ci@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-relative-ci/-/gatsby-plugin-relative-ci-1.2.0.tgz#95c47219ccb84c6e9a199bdfd388d05938c0f2af"
-  integrity sha512-zJKROw/En6CwwxP1zMwUokwKURspKbpz9J4UWHQ0pdMlB9Uk/1tr36eKPHMj1rDRAxcYQTRlJmvQtD40ttvwFA==
+gatsby-plugin-relative-ci@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-relative-ci/-/gatsby-plugin-relative-ci-1.2.1.tgz#bc9925e0fb7779ba72362c4643c3bc0c8244b57d"
+  integrity sha512-/eqKyqxoUePiZjqZL1dglSs88UTlj2WqFDthECm1xSmRYZhXj3pvJk3OjcA2YoBMao2Yv2KxRtJJfJIPoThTaw==
   dependencies:
     "@relative-ci/agent" "^2.1.0"
 
