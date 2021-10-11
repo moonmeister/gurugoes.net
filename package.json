@@ -52,7 +52,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.17.1",
     "react-loadable-visibility": "^3.0.2",
-    "react-query": "^3.25.1",
+    "react-query": "^3.26.0",
     "tailwindcss": "^2.2.16"
   },
   "devDependencies": {
