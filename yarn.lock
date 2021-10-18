@@ -7133,10 +7133,10 @@ graphql-query-compress@^1.2.4:
   dependencies:
     tokenizr "1.5.7"
 
-graphql-request@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.5.0.tgz#7e69574e15875fb3f660a4b4be3996ecd0bbc8b7"
-  integrity sha512-Io89QpfU4rqiMbqM/KwMBzKaDLOppi8FU8sEccCE4JqCgz95W9Q8bvxQ4NfPALLSMvg9nafgg8AkYRmgKSlukA==
+graphql-request@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.6.0.tgz#8f2be900cf07ac87064b15601cc30e0f9a5e7d51"
+  integrity sha512-p5qIuD+gyjuOJ8z9sEcfcLVK7HUB+/88hf/xGEzX330U3L2OR1JtaupLPmd1D2V7YtqWiEnSA3tX9vqZ4eGMhA==
   dependencies:
     cross-fetch "^3.0.6"
     extract-files "^9.0.0"
@@ -10607,10 +10607,10 @@ react-loadable-visibility@^3.0.2:
   resolved "https://registry.yarnpkg.com/react-loadable-visibility/-/react-loadable-visibility-3.0.2.tgz#4363c9c7c0ded917304618c9b69c13de89470832"
   integrity sha512-gH5VUNdQ8QYAPAfJPXaYYJsXXHr4aEiIlieNChUPtfo/J4oEMsMRavy3eaoKglaItZmbT7q/gt1ToazOlPDHCA==
 
-react-query@^3.26.0:
-  version "3.26.0"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.26.0.tgz#7083a8622afdf946ee6d8f3a6d94591b980c1aa0"
-  integrity sha512-wFPnL9Y+9xf6gJHAQ8ue+vBurciJ4cfQL4dhsI0x3YyRaEXlyklUQpJzbR63CfFULVekP3iWoyFxhaNVS9RFDw==
+react-query@^3.27.0:
+  version "3.27.0"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.27.0.tgz#77c76377ae41d180c4718da07ef72df82e07306b"
+  integrity sha512-2MR5LBXnR6OMXQVLcv/57x1zkDNj6gK5J5mtjGi6pu0aQ6Y4jGQysVvkrAErMKMZJVZELFcYGA8LsGIHzlo/zg==
   dependencies:
     "@babel/runtime" "^7.5.5"
     broadcast-channel "^3.4.1"
