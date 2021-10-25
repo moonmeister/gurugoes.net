@@ -6383,10 +6383,10 @@ gatsby-plugin-relative-ci@^1.2.1:
   dependencies:
     "@relative-ci/agent" "^2.1.0"
 
-gatsby-plugin-robots-txt@^1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.6.10.tgz#b178efe3da65718a39d1acd2e5768f687b205cf0"
-  integrity sha512-soQT765LF0J8/dfrZGFuA/ZB/JUyvt2nVyHEFLUMd/qxgiem9x0EOZquJPId78xDHYePMkxNCPk9UsLcTZdFZw==
+gatsby-plugin-robots-txt@^1.6.13:
+  version "1.6.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.6.13.tgz#01e1ce68e3f4e07f957ac9a20cd2a9e12fdd3f79"
+  integrity sha512-MUPJsvkALwSmfRb1L3IVNmzIqwV35fol1RVot425ZYXvtD+s0OtZli5VnhLNxsX0beodyavzFl0SRJCCQZz0/g==
   dependencies:
     "@babel/runtime" "^7.14.0"
     generate-robotstxt "^8.0.3"
@@ -6647,10 +6647,10 @@ gatsby-worker@^0.5.0:
     "@babel/core" "^7.15.5"
     "@babel/runtime" "^7.15.4"
 
-gatsby@^3.14.3:
-  version "3.14.3"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.14.3.tgz#62bc020d0997f4b30e419abe644f60483f99e8b5"
-  integrity sha512-B6NmmIvGGVNktky0YGugxMJlZAbKEzGMMBA8ojbaDhfEzfNXxsyHYd0aHKL0fNwPEqMKUsllaACdXrw6CWRk2g==
+gatsby@^3.14.4:
+  version "3.14.4"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.14.4.tgz#e7ef5c3c1eda45ea3ad0bc1273f014fbc46b316c"
+  integrity sha512-cpsMhl2qkE0+TL0znwflVfycy143fFucGtFDkNxu8dbY0GRjA9MiDwlS/aSqg5U2HhhF39IcBvwuntiaP6vQ0g==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
@@ -7132,10 +7132,10 @@ graphql-query-compress@^1.2.4:
   dependencies:
     tokenizr "1.5.7"
 
-graphql-request@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.6.0.tgz#8f2be900cf07ac87064b15601cc30e0f9a5e7d51"
-  integrity sha512-p5qIuD+gyjuOJ8z9sEcfcLVK7HUB+/88hf/xGEzX330U3L2OR1JtaupLPmd1D2V7YtqWiEnSA3tX9vqZ4eGMhA==
+graphql-request@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.6.1.tgz#689cce1da990131b40b05651f9f32bff506a1d8e"
+  integrity sha512-Nm1EasrAQVZllyNTlHDLnLZjlhC6eRWnWP6KH//ytnAL08pjlLkdI2K+s6OV92p45hn5b/kUlLbDwACmRoLwrQ==
   dependencies:
     cross-fetch "^3.0.6"
     extract-files "^9.0.0"
@@ -9095,10 +9095,10 @@ nanoid@^3.1.23:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
   integrity sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==
 
-nanoid@^3.1.28:
-  version "3.1.28"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.28.tgz#3c01bac14cb6c5680569014cc65a2f26424c6bd4"
-  integrity sha512-gSu9VZ2HtmoKYe/lmyPFES5nknFrHa+/DT9muUFWFMi6Jh9E1I7bkvlQ8xxf1Kos9pi9o8lBnIOkatMhKX/YUw==
+nanoid@^3.1.30:
+  version "3.1.30"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
+  integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -9838,6 +9838,11 @@ picocolors@^0.2.1:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
   integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==
 
+picocolors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
+  integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
+
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
@@ -10215,6 +10220,15 @@ postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.15, postcss@^8.2.9:
     nanoid "^3.1.23"
     source-map-js "^0.6.2"
 
+postcss@^8.3.11:
+  version "8.3.11"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.11.tgz#c3beca7ea811cd5e1c4a3ec6d2e7599ef1f8f858"
+  integrity sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==
+  dependencies:
+    nanoid "^3.1.30"
+    picocolors "^1.0.0"
+    source-map-js "^0.6.2"
+
 postcss@^8.3.5:
   version "8.3.6"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.6.tgz#2730dd76a97969f37f53b9a6096197be311cc4ea"
@@ -10222,15 +10236,6 @@ postcss@^8.3.5:
   dependencies:
     colorette "^1.2.2"
     nanoid "^3.1.23"
-    source-map-js "^0.6.2"
-
-postcss@^8.3.9:
-  version "8.3.9"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.9.tgz#98754caa06c4ee9eb59cc48bd073bb6bd3437c31"
-  integrity sha512-f/ZFyAKh9Dnqytx5X62jgjhhzttjZS7hMsohcI7HEI5tjELX/HxCy3EFhsRxyzGvrzFF+82XPvCS8T9TFleVJw==
-  dependencies:
-    nanoid "^3.1.28"
-    picocolors "^0.2.1"
     source-map-js "^0.6.2"
 
 potrace@^2.1.8:
@@ -10586,10 +10591,10 @@ react-helmet@^6.1.0:
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
 
-react-hook-form@^7.17.4:
-  version "7.17.4"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.17.4.tgz#232b6aaccddb91eb4a228ac20b154abd90866fdb"
-  integrity sha512-7XhbCr7d9fDC1TgcK/BUbt7D3q0VJMu7jPErfsa0JrxVjv/nni41xWdJcy0Zb7R+Np8OsCkQ2lMyloAtE3DLiQ==
+react-hook-form@^7.17.5:
+  version "7.17.5"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.17.5.tgz#3852f294159378d0b5893c9fcc89e313937c6f89"
+  integrity sha512-4bPtPGkpVhZlgtTbtMGi0RFphKHgxCj5u3AsGz3SBdleELlG1pDf9zRQOtfGlOGkZlc7u78RzD0xu9kOw7PYdQ==
 
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
