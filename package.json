@@ -52,11 +52,11 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.18.0",
     "react-loadable-visibility": "^3.0.2",
-    "react-query": "^3.29.1",
+    "react-query": "^3.31.0",
     "tailwindcss": "^2.2.19"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
+    "@babel/core": "^7.16.0",
     "babel-preset-gatsby": "^1.14.0"
   },
   "resolutions": {
