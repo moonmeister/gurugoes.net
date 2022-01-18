@@ -15,7 +15,7 @@
   },
   "license": "0BSD",
   "dependencies": {
-    "@headlessui/react": "^1.4.2",
+    "@headlessui/react": "^1.4.3",
     "@hookform/error-message": "^2.0.0",
     "@loadable/component": "^5.15.2",
     "@tailwindcss/forms": "^0.4.0",
