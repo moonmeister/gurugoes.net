@@ -21,7 +21,7 @@ export function CommentSection({ data }) {
   const { commentStatus, postId } = data;
 
   return (
-    <section className="bg-green-600 p-8">
+    <section className="bg-green-700 p-8">
       <h1 className="text-lg font-bold py-4">Comments</h1>
       <QueryClientProvider client={queryClient}>
 
