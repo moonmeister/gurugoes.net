@@ -2,8 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     screens: {
       sm: '600px',
@@ -21,12 +20,6 @@ module.exports = {
         secondary: colors.violet,
         amber: colors.amber,
       },
-    },
-  },
-  variants: {
-    extend: {
-      borderWidth: ['focus'],
-      backgroundColor: ['even'],
     },
   },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],

@@ -20,8 +20,8 @@
     "@loadable/component": "^5.15.2",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.2",
+    "@wordpress/block-library": "^7.2.0",
     "autoprefixer": "^10.4.4",
-    "dotenv": "^10.0.0",
     "gatsby": "^4.10.1",
     "gatsby-plugin-ackee-tracker": "^3.2.4",
     "gatsby-plugin-feed": "^4.10.1",
@@ -37,29 +37,26 @@
     "gatsby-plugin-robots-txt": "^1.7.0",
     "gatsby-plugin-sharp": "^4.10.1",
     "gatsby-plugin-sitemap": "^5.10.1",
-    "gatsby-plugin-webpack-size": "^2.0.1",
     "gatsby-source-filesystem": "^4.10.0",
     "gatsby-source-wordpress": "^6.10.1",
     "gatsby-transformer-sharp": "^4.10.0",
-    "graphql-request": "^3.7.0",
+    "graphql-request": "^4.2.0",
     "postcss": "^8.4.12",
-    "postcss-nested": "^5.0.6",
+    "postcss-import": "^14.1.0",
     "preact": "^10.6.6",
     "preact-render-to-string": "^5.1.20",
-    "prettier": "^2.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.28.1",
     "react-loadable-visibility": "^3.0.2",
     "react-query": "^3.34.16",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
-    "babel-preset-gatsby": "^2.10.0"
-  },
-  "resolutions": {
-    "size-plugin": "^1.2.0"
+    "babel-preset-gatsby": "^2.10.0",
+    "dotenv": "^16.0.0",
+    "prettier": "^2.6.0"
   }
 }

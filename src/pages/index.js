@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { ArchiveView } from '../components/post/Archive';
 import Seo from '../components/seo';
@@ -28,7 +28,7 @@ export default function IndexPage({
       <section className="sm:grid items-center grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 lg:gap-16 md:gap-8 gap-4">
         <div className="p-8 sm:p-4 sm:col-start-1 sm:col-end-2">
           <GatsbyImage
-            image={getImage(featuredImage.localFile)}
+            image={featuredImage.gatsbyImage}
             alt={featuredImage.altText}
             className="rounded-full"
             loading="eager"
@@ -62,15 +62,11 @@ export const query = graphql`
       featuredImage {
         node {
           altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                layout: FULL_WIDTH
-                placeholder: DOMINANT_COLOR
-                formats: [AUTO, WEBP, AVIF]
-              )
-            }
-          }
+          gatsbyImage(
+            width: 350
+            layout: FULL_WIDTH
+            placeholder: DOMINANT_COLOR
+          )
         }
       }
       ...PageSeo
