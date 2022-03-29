@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { classNames } from '../../libs/strings';
 
 export default function FeaturedImage({ data, className, children }) {
+  const featuredImage = data?.node?.gatsbyImage
   return (
     <>
-      {data?.node?.localFile ? (
+      { featuredImage ? (
         <GatsbyImage
           className={classNames('w-full object-cover', className)}
-          image={getImage(data.node.localFile)}
+          image={featuredImage}
           alt={data.node.altText}
         >
           {children}
@@ -26,15 +27,11 @@ export const fragments = graphql`
     featuredImage {
       node {
         altText
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              layout: FULL_WIDTH
-              placeholder: DOMINANT_COLOR
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
+        gatsbyImage(
+          width: 1250
+          layout: FULL_WIDTH
+          placeholder: DOMINANT_COLOR
+        )
       }
     }
   }

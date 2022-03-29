@@ -24,7 +24,7 @@ export default function PostContent({ data }) {
             <FeaturedImage data={featuredImage} className="max-h-96" />
           </div>
           <h1 className="z-10 row-start-2 row-end-3 col-start-2 col-end-3">
-            <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-white sm:text-4xl bg-green-600 bg-opacity-50 p-2 rounded-lg">
+            <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-white sm:text-4xl bg-green-700 bg-opacity-50 p-2 rounded-lg">
               {title}
             </span>
           </h1>
@@ -37,7 +37,7 @@ export default function PostContent({ data }) {
       </header>
       <div className="my-16 px-4 sm:px-6 lg:px-8">
         <div
-          className="wp-blocks mt-6 prose max-w-prose prose-green prose-lg text-gray-500 mx-auto"
+          className="wp-blocks prose-lg mt-6 max-w-prose prose-green text-gray-500 mx-auto"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>

@@ -81,9 +81,9 @@ export default function SEO({
   const featuredImage = data?.featuredImage?.node;
 
   if (featuredImage) {
-    const { altText, localFile } = featuredImage;
+    const { altText, resize: image } = featuredImage;
 
-    const imageUrl = `${siteUrl}${localFile?.childImageSharp.resize.src}`;
+    const imageUrl = `${siteUrl}${image.src}`;
 
     twitterCard = twitterCard.concat([
       {
@@ -121,7 +121,7 @@ export default function SEO({
       });
 
     const jsonLdImage =
-      data?.featuredImage?.node.localFile.childImageSharp.original.src;
+      data?.featuredImage?.node.resize.src;
 
     jsonLd.push({
       type: 'application/ld+json',
@@ -167,24 +167,14 @@ export default function SEO({
 export const fragments = graphql`
   fragment OgSeoFeaturedImage on WpMediaItem {
     altText
-    localFile {
-      childImageSharp {
-        resize(cropFocus: CENTER, fit: COVER, height: 2048, width: 4096) {
-          src
-        }
-      }
+    resize(cropFocus: CENTER, fit: COVER, height: 2048, width: 4096) {
+      src
     }
   }
 
   fragment JsonLdSeoFeaturedImage on WpMediaItem {
     altText
-    localFile {
-      childImageSharp {
-        original {
-          src
-        }
-      }
-    }
+    sourceUrl
   }
 
   fragment PostSeo on WpPost {

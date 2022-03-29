@@ -36,6 +36,10 @@
     .full-size img {
       max-width: 100%;
     }
+
+    .size-large .gatsby-image-wrapper {
+      @apply w-full
+    }
   }
 
   /* Block: Paragraph  ------------------------- */

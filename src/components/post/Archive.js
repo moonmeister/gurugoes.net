@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { Link } from '../button';
 import { Time, ReadingTime } from '../time';
@@ -21,17 +21,17 @@ export function ArchiveView({ posts: staticPosts }) {
               dateGmt,
               categories,
               readingTime,
-              featuredImage,
+              featuredImage: { node: featuredImage },
             } = post;
 
             return (
               <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                <div className="flex-shrink-0">
-                  {featuredImage?.node?.localFile ? (
+                <div className="shrink-0">
+                  {featuredImage?.gatsbyImage ? (
                     <GatsbyImage
                       className="h-48 w-full object-cover"
-                      image={getImage(featuredImage.node.localFile)}
-                      alt={featuredImage.node.altText}
+                      image={(featuredImage.gatsbyImage)}
+                      alt={featuredImage.altText}
                     />
                   ) : (
                     <div className="h-48 bg-green-600" />
@@ -98,15 +98,11 @@ export const fragment = graphql`
     featuredImage {
       node {
         altText
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              layout: FULL_WIDTH
-              placeholder: DOMINANT_COLOR
-              formats: [AUTO, WEBP, AVIF]
-            )
-          }
-        }
+        gatsbyImage(
+          width: 400
+          layout: FULL_WIDTH
+          placeholder: DOMINANT_COLOR
+        )
       }
     }
     readingTime {

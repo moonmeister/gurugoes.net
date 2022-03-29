@@ -22,6 +22,11 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: 'https://gurugoes.api.moonmeister.net/graphql',
+        type: {
+          MediaItem: {
+            createFileNodes: false,
+          },
+        }
       },
     },
 
@@ -170,7 +175,6 @@ module.exports = {
     },
 
     /* Build Plugins */
-    'gatsby-plugin-webpack-size',
     'gatsby-plugin-relative-ci',
   ],
 };
