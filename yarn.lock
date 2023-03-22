@@ -7161,10 +7161,10 @@ gatsby-plugin-react-helmet@^5.25.0:
   dependencies:
     "@babel/runtime" "^7.15.4"
 
-gatsby-plugin-readingtime@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-readingtime/-/gatsby-plugin-readingtime-2.2.1.tgz#c87111853bd61a74577cfcc860546b160a2fc7c1"
-  integrity sha512-htENbVKP8UBPCvXud7piXLRARoIAWZ2UhrySkcBVBiPhL1Q4R0f8rTf+TC33HmDkK4/1WKT3RM1hmhJPNVqhsA==
+gatsby-plugin-readingtime@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-readingtime/-/gatsby-plugin-readingtime-3.0.1.tgz#d3107d46431fe45d2cc7653cb0129e6a65d458f7"
+  integrity sha512-wy6zEia62Nj2ttzEYv0V3jomEWArGz1PH3gHJ+K2vcbKHzaagUBq372GeXaMipGlZTir4fHe7jt4dN24KSmpzQ==
   dependencies:
     reading-time "^1.5.0"
 
