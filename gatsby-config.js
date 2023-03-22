@@ -125,30 +125,26 @@ module.exports = {
                   url: `${site.siteMetadata.siteUrl}${uri}`,
                 })
               ),
-            query: `
-              {
-                allWpPost(
-                  sort: {fields: [dateGmt], order: DESC}
-                ) {
-                  nodes {
-                    title
-                    dateGmt
-                    uri
-                    excerpt
-                    categories {
-                      nodes{
-                        name
-                      }
-                    }
-                    author{
-                      node {
-                        name
-                      }
-                    }
-                  }
-                }
-              }
-            `,
+            query: `{
+  allWpPost(sort: {dateGmt: DESC}) {
+    nodes {
+      title
+      dateGmt
+      uri
+      excerpt
+      categories {
+        nodes {
+          name
+        }
+      }
+      author {
+        node {
+          name
+        }
+      }
+    }
+  }
+}`,
             output: '/rss.xml',
             title: 'Guru Goes RSS Feed',
           },

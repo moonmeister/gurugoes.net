@@ -34,21 +34,18 @@ export default function CategoryPage({ data }) {
   );
 }
 
-export const query = graphql`
-  query WpCategory($id: String!) {
-    wpCategory(id: { eq: $id }) {
-      name
-      description
-      ...CategorySeo
-    }
-
-    allWpPost(
-      filter: { categories: { nodes: { elemMatch: { id: { eq: $id } } } } }
-      sort: { fields: dateGmt, order: DESC }
-    ) {
-      posts: nodes {
-        ...ArchivePost
-      }
+export const query = graphql`query WpCategory($id: String!) {
+  wpCategory(id: {eq: $id}) {
+    name
+    description
+    ...CategorySeo
+  }
+  allWpPost(
+    filter: {categories: {nodes: {elemMatch: {id: {eq: $id}}}}}
+    sort: {dateGmt: DESC}
+  ) {
+    posts: nodes {
+      ...ArchivePost
     }
   }
-`;
+}`;

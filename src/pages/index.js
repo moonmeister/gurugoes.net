@@ -54,28 +54,21 @@ export default function IndexPage({
   );
 }
 
-export const query = graphql`
-  {
-    wpPage(isFrontPage: { eq: true }) {
-      title
-      content
-      featuredImage {
-        node {
-          altText
-          gatsbyImage(
-            width: 350
-            layout: FULL_WIDTH
-            placeholder: DOMINANT_COLOR
-          )
-        }
+export const query = graphql`{
+  wpPage(isFrontPage: {eq: true}) {
+    title
+    content
+    featuredImage {
+      node {
+        altText
+        gatsbyImage(width: 350, layout: FULL_WIDTH, placeholder: DOMINANT_COLOR)
       }
-      ...PageSeo
     }
-
-    allWpPost(sort: { order: DESC, fields: dateGmt }) {
-      posts: nodes {
-        ...ArchivePost
-      }
+    ...PageSeo
+  }
+  allWpPost(sort: {dateGmt: DESC}) {
+    posts: nodes {
+      ...ArchivePost
     }
   }
-`;
+}`;
