@@ -20,7 +20,10 @@ module.exports = {
           MediaItem: {
             createFileNodes: false,
           },
-        }
+        },
+        html: {
+          useGatsbyImage: false,
+        },
       },
     },
 
