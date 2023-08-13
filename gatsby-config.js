@@ -22,7 +22,7 @@ module.exports = {
           },
         },
         html: {
-          useGatsbyImage: false,
+          useGatsbyImage: true,
         },
       },
     },
