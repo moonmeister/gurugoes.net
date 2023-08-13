@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import loadableVisibility from 'react-loadable-visibility/loadable-components';
-import { ReactQueryDevtools } from '@tanstack/react-query/devtools';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import Loading from '../loading';
 
