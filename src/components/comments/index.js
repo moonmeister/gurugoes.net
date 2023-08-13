@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import loadableVisibility from 'react-loadable-visibility/loadable-components';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { ReactQueryDevtools } from '@tanstack/react-query/devtools';
 
 import Loading from '../loading';
 
