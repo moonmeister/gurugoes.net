@@ -5,9 +5,6 @@ if (process.env.GATSBY_CLOUD !== true) {
 const siteUrl = 'https://gurugoes.net';
 
 module.exports = {
-  flags: {
-    FAST_DEV: true,
-  },
   siteMetadata: {
     siteUrl,
     title: 'gurugoes.net',
@@ -44,7 +41,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     /* Third Party Integration Plugins */
     'gatsby-plugin-postcss',
-    'gatsby-plugin-preact',
 
     /* Misc Utilities to generate misc site related structured content */
     {
