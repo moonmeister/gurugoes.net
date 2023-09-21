@@ -26,7 +26,6 @@
     "autoprefixer": "^10.4.14",
     "gatsby": "^5.11.0",
     "gatsby-plugin-feed": "^5.11.0",
-    "gatsby-plugin-gatsby-cloud": "^5.11.0",
     "gatsby-plugin-image": "^3.11.0",
     "gatsby-plugin-layout": "^4.11.0",
     "gatsby-plugin-manifest": "^5.11.0",

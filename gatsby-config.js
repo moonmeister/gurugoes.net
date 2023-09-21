@@ -150,10 +150,6 @@ module.exports = {
         ],
       },
     },
-
-    /* Hosting and backend plugins */
-    'gatsby-plugin-gatsby-cloud',
-
     /* Build Plugins */
     'gatsby-plugin-relative-ci',
   ],
