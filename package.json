@@ -4,6 +4,7 @@
   "private": true,
   "description": "gurugoes.net",
   "author": "Alex Moon",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "gatsby develop",
     "start": "gatsby develop",

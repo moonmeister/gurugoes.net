@@ -15,7 +15,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        url: 'https://gurugoes.api.moonmeister.net/graphql',
+        url: 'https://cms.gurugoes.net/graphql',
         type: {
           MediaItem: {
             createFileNodes: false,
