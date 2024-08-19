@@ -23,7 +23,7 @@
     "@tailwindcss/typography": "^0.5.14",
     "@tanstack/react-query": "^4.36.1",
     "@tanstack/react-query-devtools": "^4.36.1",
-    "@wordpress/block-library": "^8.16.0",
+    "@wordpress/block-library": "^8.35.0",
     "autoprefixer": "^10.4.20",
     "gatsby": "^5.13.7",
     "gatsby-adapter-netlify": "^1.1.7",
@@ -47,14 +47,14 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^7.45.4",
+    "react-hook-form": "^7.52.2",
     "react-loadable-visibility": "^3.0.2",
     "tailwindcss": "^3.4.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.10",
+    "@babel/core": "^7.25.2",
     "babel-preset-gatsby": "^3.13.2",
     "dotenv": "^16.4.5",
-    "prettier": "^3.0.1"
+    "prettier": "^3.3.3"
   }
 }
