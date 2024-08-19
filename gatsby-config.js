@@ -1,10 +1,17 @@
+const adapter = require("gatsby-adapter-netlify").default;
+
 if (process.env.GATSBY_CLOUD !== true) {
   require('dotenv').config();
 }
 
 const siteUrl = 'https://gurugoes.net';
 
+
 module.exports = {
+  adapter: adapter({
+    excludeDatastoreFromEngineFunction: true,
+    imageCDN: true,
+  }),
   siteMetadata: {
     siteUrl,
     title: 'gurugoes.net',
