@@ -1,0 +1,7 @@
+[images]
+remote_images = [
+  # <your-wordpress-url> is specified in the `url` option for the
+  # gatsby-source-wordpress plugin in your gatsby-config file.
+  # There is no need to include `/graphql in the path here`
+  "https://cms.gurugoes.net/.*"
+]
