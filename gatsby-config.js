@@ -1,5 +1,9 @@
 const adapter = require("gatsby-adapter-netlify");
 
+if (process.env.GATSBY_CLOUD !== true) {
+  require('dotenv').config();
+}
+
 const siteUrl = 'https://gurugoes.net';
 
 
