@@ -1,4 +1,4 @@
-const adapter = require("gatsby-adapter-netlify");
+const adapter = require("gatsby-adapter-netlify").default;
 
 if (process.env.GATSBY_CLOUD !== true) {
   require('dotenv').config();
