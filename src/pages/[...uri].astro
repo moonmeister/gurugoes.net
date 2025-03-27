@@ -1,14 +1,18 @@
 ---
+import type {
+	GetStaticPaths,
+	InferGetStaticParamsType,
+	InferGetStaticPropsType,
+} from "astro";
 import { getSeedQuery } from "../lib/client";
 import { getTemplate } from "../lib/templates";
-
-export const prerender = true;
 
 export const getStaticPaths = (async () => {
 	const posts = [
 		{ uri: "/" },
 		{ uri: "/category/hiking/" },
 		{ uri: "/hiking/fkt-appalachian-high-route/" },
+		{ uri: "/cdt/lake-city-to-salida-co/" },
 	];
 	return posts.map((post) => {
 		return {
@@ -20,45 +24,19 @@ export const getStaticPaths = (async () => {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
+// export const prerender = false;
+
 const { uri = "/" } = Astro.params as Params;
+// const uri = Astro.url.pathname;
 
 const { data } = await getSeedQuery({ uri });
 
 const template = await getTemplate(data.nodeByUri);
 
-// Astro.locals.uri = uri;
-
+Astro.locals.uri = uri;
 return Astro.rewrite(template?.path);
-
-// const { test } = Astro.props as Props;
 ---
 
 <div>Something is wrong if you're seeing this</div>
 <pre>{JSON.stringify(template, null, 2)}</pre>
 <pre>{JSON.stringify(data, null, 2)}</pre>
-<!-- // import { WP_URL } from "astro:env/client"; import wait from "wait"; //
-console.log({ WP_URL }); // const WP_GRAPHQL_URL = new URL("/index.php?graphql",
-WP_URL); --><!-- export const prerender = false;
-
-export async function GET({ params, rewrite, locals }) {
-  locals.uri = params.uri;
-
-  // simulate fetching seedQuery data
-  await wait(500);
-
-  const seedQuery = { template: "home", uri: params.uri, is404: false };
-
-  // set the seedQuery data to the context locals
-
-  locals.seedQuery = seedQuery;
-
-  if (locals.seedQuery.is404) {
-    rewrite("/404");
-  }
-
-  const templateRoute = `/wp-templates/${locals.seedQuery.template}`;
-
-  console.log("rewriting to", templateRoute);
-
-  return rewrite("/wp-templates/home");
-} -->
