@@ -1,0 +1,18 @@
+---
+import Base from "../../layouts/base.astro";
+export const prerender = false;
+
+const url = Astro.url;
+const originUrl = Astro.originPathname;
+
+// if (!locals.uri) {
+// 	return Astro.rewrite("/404");
+// }
+---
+
+<Base>
+	<h1>Archive template</h1>
+	<pre>{JSON.stringify({url, originUrl}, null, 2)}</pre>
+
+	<a href="/wp-templates/archive">Direct to archive template</a>
+</Base>
