@@ -1,5 +1,3 @@
-import { getEntry } from "astro:content";
-
 export interface SeedNode {
 	__typename?: string;
 	uri?: string;
@@ -169,6 +167,7 @@ export function getPossibleTemplates(node: SeedNode) {
 
 export async function getTemplate(
 	seedNode: SeedNode | null | undefined,
+	templates: WordPressTemplate[] | undefined,
 ): Promise<WordPressTemplate | undefined> {
 	if (!seedNode) {
 		return undefined;
@@ -178,11 +177,14 @@ export async function getTemplate(
 
 	// eslint-disable-next-line no-plusplus
 	for (const possibleTemplate of possibleTemplates) {
-		const templateFromConfig = await getEntry("templates", possibleTemplate);
+		const templateFromConfig = templates?.find(
+			(template) => template.id === possibleTemplate,
+		);
+
 		if (!templateFromConfig) {
 			continue;
 		}
 
-		return templateFromConfig.data;
+		return templateFromConfig;
 	}
 }

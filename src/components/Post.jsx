@@ -1,0 +1,31 @@
+import { useCategoryContext } from '../hooks/CategoryContext';
+import { ProvideAuth } from '../hooks/use-auth';
+
+import PostContent from './post/Content';
+import { CommentSection, getCommentData } from '../components/comments/';
+import Seo from '../components/seo';
+
+export default function PostPage({ data: { wpPost } }) {
+  const { setCurrentCategory } = useCategoryContext();
+  setCurrentCategory('show-all');
+
+  return (
+	<ProvideAuth>
+	  {/* <Seo type="article" data={wpPost} /> */}
+	  <div className="relative bg-white rounded-3xl overflow-hidden">
+		<PostContent data={wpPost} />
+		{/* <CommentSection data={getCommentData(wpPost)} /> */}
+	  </div>
+	</ProvideAuth>
+  );
+}
+
+export const query = graphql`
+  query blogPostQuery($id: String!) {
+	wpPost(id: { eq: $id }) {
+	  ...PostContent
+	  ...PostSeo
+	  ...PostComments
+	}
+  }
+`;

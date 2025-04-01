@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-import { ExtLink } from './button';
+import { ExtLink } from './links.jsx';
 
 import { Instagram, Twitter } from './icons/social';
 

@@ -4,8 +4,9 @@ import type {
 	InferGetStaticParamsType,
 	InferGetStaticPropsType,
 } from "astro";
-import { getSeedQuery } from "../lib/client";
+import { getSeedQuery } from "../lib/seedQuery";
 import { getTemplate } from "../lib/templates";
+import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
 	const posts = [
@@ -17,6 +18,7 @@ export const getStaticPaths = (async () => {
 	return posts.map((post) => {
 		return {
 			params: { uri: post.uri },
+			props: { uri: post.uri },
 		};
 	});
 }) satisfies GetStaticPaths;
@@ -27,14 +29,21 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 // export const prerender = false;
 
 const { uri = "/" } = Astro.params as Params;
-// const uri = Astro.url.pathname;
 
 const { data } = await getSeedQuery({ uri });
 
-const template = await getTemplate(data.nodeByUri);
+const availableTemplates = await getCollection("templates");
+
+const template = await getTemplate(
+	data.nodeByUri,
+	availableTemplates.map((template) => template.data)
+);
 
 Astro.locals.uri = uri;
-return Astro.rewrite(template?.path);
+
+if (template) {
+	return Astro.rewrite(template?.path);
+}
 ---
 
 <div>Something is wrong if you're seeing this</div>
