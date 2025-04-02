@@ -1,19 +1,19 @@
-import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { gql } from "@urql/core";
 import { classNames } from "../../lib/strings";
 
-export default function FeaturedImage({ data, className, children }) {
-	const featuredImage = data?.node?.gatsbyImage;
+export function FeaturedImage({ data, className, children }) {
+	const featuredImage = data?.node;
 	return (
 		<>
-			{featuredImage ? (
-				<GatsbyImage
+			{featuredImage.src ? (
+				<img
 					className={classNames("w-full object-cover", className)}
-					image={featuredImage}
-					alt={data.node.altText}
+					src={featuredImage.src}
+					srcSet={featuredImage.srcSet}
+					alt={featuredImage.altText}
 				>
 					{children}
-				</GatsbyImage>
+				</img>
 			) : (
 				<div className={classNames("bg-green-600", className)}>{children}</div>
 			)}
@@ -21,16 +21,13 @@ export default function FeaturedImage({ data, className, children }) {
 	);
 }
 
-export const fragments = graphql`
-	fragment PostFeaturedImage on WpPost {
+FeaturedImage.fragment = gql`
+	fragment FeaturedImage on Post {
 		featuredImage {
 			node {
 				altText
-				gatsbyImage(
-					width: 1250
-					layout: FULL_WIDTH
-					placeholder: DOMINANT_COLOR
-				)
+				sourceUrl
+				srcSet
 			}
 		}
 	}

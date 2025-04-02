@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { useFormContext } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
-import { classNames } from '../../../../src/lib/strings';
-import { buttonClasses } from '../button';
+import { classNames } from "../../lib/strings";
+import { buttonClasses } from "../links";
 const inputStyles =
-	'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md';
+	"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md";
 
 export function Label({ htmlFor, value, children }) {
 	return (
@@ -54,7 +53,7 @@ export function Submit({ ...props }) {
 		<input
 			{...props}
 			type="submit"
-			className={classNames(buttonClasses, 'cursor-pointer')}
+			className={classNames(buttonClasses, "cursor-pointer")}
 		/>
 	);
 }

@@ -1,33 +1,7 @@
-import { gql } from "@urql/core";
-import { client } from "./client.js";
-
-export async function listCommentsByPostId(postId) {
-	return client.query(
-		gql`
-			query postComments($postId: ID!) {
-				post(id: $postId, idType: DATABASE_ID) {
-					comments {
-						nodes {
-							content
-							databaseId
-							parentDatabaseId
-							author {
-								node {
-									name
-								}
-							}
-							dateGmt
-						}
-					}
-				}
-			}
-		`,
-		{ postId },
-	);
-}
+import { useQuery, gql, useMutation } from "urql";
 
 export async function createComment(data) {
-	return client.mutation(
+	return useMutation(
 		gql`
 			mutation postComment(
 				$name: String!

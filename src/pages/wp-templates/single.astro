@@ -1,20 +1,46 @@
 ---
+export const prerender = false;
+import { client, gql } from "../../lib/client";
 import Base from "../../layouts/base.astro";
+import { PostContent } from "../../components/post/Content";
+import { CommentSection, getCommentData } from "../../components/comments/section";
 
-export const prerender = true;
-
-const url = Astro.url;
-const originUrl = Astro.originPathname;
-const locals = Astro.locals;
-
-if (!locals.uri) {
+if (!Astro.locals.uri) {
 	return Astro.rewrite("/404");
 }
+
+console.log({
+	uri: Astro.locals.uri,
+});
+
+const query = gql`
+	query GetComments($uri: ID!) {
+		post(id: $uri, idType: URI) {
+			...CommentSection
+			...PostContent
+		}
+	}
+	${PostContent.fragment}
+	${CommentSection.fragment}
+`;
+
+const contentResponse = await client.query(query, {
+	uri: Astro.locals.uri,
+});
+
 ---
 
-<Base>
-	<h1>single template</h1>
-	<pre>{JSON.stringify({url, originUrl, locals}, null, 2)}</pre>
+<Base currentUri={Astro.locals.uri}>
+	<!-- <Seo type="article" data={wpPost} /> -->
+	<div class="relative bg-white rounded-3xl overflow-hidden">
+		{
+			contentResponse.error ? (
+				<div class="text-red-500">{contentResponse.error}</div>
+			) : (
+				<PostContent data={contentResponse.data.post} />
+				<CommentSection client:load data={getCommentData(contentResponse.data.post)} />
+			)
+		}
 
-	<a href="/wp-templates/single">Direct to single template</a>
+	</div>
 </Base>

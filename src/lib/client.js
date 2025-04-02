@@ -1,7 +1,7 @@
-import { Client, fetchExchange } from "urql";
-export { gql } from "urql";
+import { Client, fetchExchange } from "@urql/core";
+export { gql } from "@urql/core";
 import { persistedExchange } from "@urql/exchange-persisted";
-import { WP_URL } from "astro:env/server";
+import { WP_URL } from "astro:env/client";
 
 const GRAPHQL_URL = "index.php?graphql";
 const graphqlApi = new URL(GRAPHQL_URL, WP_URL).href;

@@ -14,7 +14,7 @@ export default defineConfig({
 	env: {
 		schema: {
 			WP_URL: envField.string({
-				context: "server",
+				context: "client",
 				access: "public",
 				optional: false,
 			}),

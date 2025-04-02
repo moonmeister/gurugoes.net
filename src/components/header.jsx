@@ -1,8 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import { Link } from "./links.jsx";
-import { useCategoryContext } from "../hooks/CategoryContext";
-import { useQuery, gql } from "urql";
+import { gql } from "@urql/core";
 
 const MobileMenuItem = ({ href, children, ...rest }) => (
 	<div className="px-2 pt-2 pb-3" role="none">
@@ -17,7 +16,7 @@ const MobileMenuItem = ({ href, children, ...rest }) => (
 	</div>
 );
 
-const MENU_QUERY = gql`
+export const QUERY = gql`
 	query get_menu {
 		categories(where: { hideEmpty: true }) {
 			nodes {
@@ -28,19 +27,10 @@ const MENU_QUERY = gql`
 	}
 `;
 
-export function Header() {
-	const [result] = useQuery({
-		query: MENU_QUERY,
-	});
-
+export function Header({ categories = [], currentPage }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const { currentCategory } = useCategoryContext();
 
-	if (result.fetching) return <div>Loading...</div>;
-
-	console.log({ result });
-
-	const categories = result.data?.categories?.nodes;
+	const allCategories = [{ name: "All", uri: "/" }, ...categories];
 	return (
 		<>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -80,11 +70,9 @@ export function Header() {
 						</div>
 					</div>
 					<div className="hidden md:flex md:space-x-10">
-						{currentCategory !== "all" ? <Link href="/">All</Link> : null}
-
-						{categories?.map(({ name, uri }) =>
-							currentCategory !== name ? (
-								<Link href={uri} role="menuitem">
+						{allCategories?.map(({ name, uri }) =>
+							currentPage !== uri ? (
+								<Link key={uri} href={uri} role="menuitem">
 									{name}
 								</Link>
 							) : null,
@@ -134,13 +122,13 @@ export function Header() {
 							aria-orientation="vertical"
 							aria-labelledby="main-menu"
 						>
-							{currentCategory !== "all" ? (
-								<MobileMenuItem href={"/"}>All</MobileMenuItem>
-							) : null}
-
-							{categories?.map(({ name, uri }) =>
-								currentCategory === name ? null : (
-									<MobileMenuItem href={uri} onClick={() => setIsOpen(!isOpen)}>
+							{allCategories?.map(({ name, uri }) =>
+								currentPage === uri ? null : (
+									<MobileMenuItem
+										key={uri}
+										href={uri}
+										onClick={() => setIsOpen(!isOpen)}
+									>
 										{name}
 									</MobileMenuItem>
 								),

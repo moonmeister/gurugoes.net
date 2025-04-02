@@ -1,12 +1,11 @@
-
-import FeaturedImage from "./FeaturedImage";
-
+import { gql } from "@urql/core";
+import { FeaturedImage } from "./FeaturedImage";
 import { Time, ReadingTime } from "../time";
 
 import "../../styles/wpBlocks.css";
 
-export default function PostContent({ data }) {
-	const { content, title, dateGmt, readingTime, featuredImage } = data;
+export function PostContent({ data }) {
+	const { content, title, dateGmt, featuredImage } = data;
 	return (
 		<article className="relative">
 			<header className="static text-lg mx-auto w-full">
@@ -30,7 +29,7 @@ export default function PostContent({ data }) {
 				<div className="text-center text-sm text-gray-500 leading-8">
 					<Time dateTime={dateGmt} />
 					<span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
-					<ReadingTime {...readingTime} />
+					<ReadingTime content={content} />
 				</div>
 			</header>
 			<div className="my-16 px-4 sm:px-6 lg:px-8">
@@ -43,14 +42,13 @@ export default function PostContent({ data }) {
 	);
 }
 
-export const fragment = graphql`
-	fragment PostContent on WpPost {
+PostContent.fragment = gql`
+	fragment PostContent on Post {
 		title
 		content
 		dateGmt
-		readingTime {
-			...ReadingTime
-		}
-		...PostFeaturedImage
+		...FeaturedImage
 	}
+
+	${FeaturedImage.fragment}
 `;
