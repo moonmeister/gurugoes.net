@@ -1,15 +1,35 @@
 import { useForm, FormProvider } from "react-hook-form";
-
+import { useEffect } from "react";
 import { Button } from "../links";
 
 import { Label, Input, Description, Textarea, Submit, Error } from "./inputs";
-import { useAddComment } from "../../hooks/comments";
 import { useAuth } from "../../hooks/use-auth";
+import { useMutation, gql } from "urql";
 
 export default function SubmitComment({ data: { postId } }) {
 	const { user, signout, signin } = useAuth();
 
-	const { mutateAsync, isLoading } = useAddComment();
+	const [submitCommentResult, submitComment] = useMutation(gql`
+		mutation postComment(
+			$name: String!
+			$email: String!
+			$comment: String!
+			$commentOn: Int!
+		) {
+			createComment(
+				input: {
+					author: $name
+					authorEmail: $email
+					content: $comment
+					commentOn: $commentOn
+				}
+			) {
+				success
+			}
+		}
+	`);
+
+	const isLoading = false; //isLoading;
 
 	const methods = useForm({
 		defaultValues: { comment: "" },
@@ -20,7 +40,7 @@ export default function SubmitComment({ data: { postId } }) {
 		reset,
 		setError,
 		clearErrors,
-		formState: { isSubmitSuccessful, errors },
+		formState: { errors, isSubmitSuccessful },
 	} = methods;
 
 	const onSubmit = async (formData) => {
@@ -33,7 +53,7 @@ export default function SubmitComment({ data: { postId } }) {
 		const mutationData = { ...formData, commentOn: postId };
 
 		try {
-			await mutateAsync(mutationData);
+			await submitComment(mutationData);
 		} catch (err) {
 			err.response.errors.forEach((error) => {
 				setError("graphql", error);
@@ -41,13 +61,13 @@ export default function SubmitComment({ data: { postId } }) {
 		}
 	};
 
-	React.useEffect(() => {
-		if (errors.graphql) {
+	useEffect(() => {
+		if (errors?.graphql) {
 			const timeout = setTimeout(() => clearErrors("graphql"), 5000);
 
 			return () => clearTimeout(timeout);
 		}
-	}, [errors.graphql, clearErrors]);
+	}, [errors?.graphql, clearErrors]);
 
 	function SubmittedMessage() {
 		return (
@@ -92,7 +112,11 @@ export default function SubmitComment({ data: { postId } }) {
 								<Description id="name-description">
 									Real or fake, made available with your comment.
 								</Description>
-								<Error name="name" className="text-red-700 italic" />
+								<Error
+									errors={errors}
+									name="name"
+									className="text-red-700 italic"
+								/>
 							</Label>
 
 							<Label value="Email" htmlFor="email">
@@ -108,7 +132,11 @@ export default function SubmitComment({ data: { postId } }) {
 								<Description id="email-description">
 									We'll only use this for spam prevention.
 								</Description>
-								<Error name="email" className="text-red-700 italic" />
+								<Error
+									errors={errors}
+									name="email"
+									className="text-red-700 italic"
+								/>
 							</Label>
 						</div>
 
@@ -140,13 +168,17 @@ export default function SubmitComment({ data: { postId } }) {
 								className="w-full max-w-full"
 								reg={{ required: "A comment is required." }}
 							/>
-							<Error name="comment" className="text-red-700 italic" />
+							<Error
+								errors={errors}
+								name="comment"
+								className="text-red-700 italic"
+							/>
 						</Label>
 
 						<div className="mt-2">
 							<Submit value={isLoading ? "Submitting..." : "Comment"} />
 						</div>
-						<Error name="graphql" />
+						<Error errors={errors} name="graphql" />
 					</form>
 				)}
 			</FormProvider>

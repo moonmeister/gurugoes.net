@@ -36,7 +36,7 @@ export function CommentList({ postId }) {
 	const comments = data?.post?.comments?.nodes || [];
 
 	const depthCalcs = useMemo(() => {
-		if (data.comments.length <= 0) return null;
+		if (comments.length <= 0) return null;
 
 		const sortedComments = comments.sort(
 			({ parentDatabaseId, databaseId }) => databaseId - parentDatabaseId,

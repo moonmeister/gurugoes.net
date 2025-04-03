@@ -3,6 +3,7 @@ import { ErrorMessage } from "@hookform/error-message";
 
 import { classNames } from "../../lib/strings";
 import { buttonClasses } from "../links";
+
 const inputStyles =
 	"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md";
 
@@ -19,11 +20,16 @@ export function Label({ htmlFor, value, children }) {
 
 export function Input({ className, name, reg = {}, ...props }) {
 	const { register } = useFormContext();
+
 	return (
 		<input
 			{...props}
 			{...register(name, reg)}
-			className={classNames(inputStyles, className)}
+			className={classNames(
+				inputStyles,
+				className,
+				props.type === "checkbox" ? "form-checkbox" : "form-input",
+			)}
 		/>
 	);
 }
@@ -35,7 +41,7 @@ export function Textarea({ className, name, reg = {}, ...props }) {
 		<textarea
 			{...props}
 			{...register(name, reg)}
-			className={classNames(inputStyles, className)}
+			className={classNames(inputStyles, className, "form-textarea")}
 		/>
 	);
 }

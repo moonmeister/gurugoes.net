@@ -7,7 +7,6 @@ const TEMPLATE_PATH = "wp-templates";
 const templates = defineCollection({
 	loader: async () => {
 		const files = await readdir(join("src", "pages", TEMPLATE_PATH));
-		console.log({ files });
 		return files.map((file) => {
 			const slug = file.replace(".astro", "");
 			return {

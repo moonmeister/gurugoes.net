@@ -12,8 +12,8 @@ export function PostContent({ data }) {
 				<div
 					className="grid w-full"
 					style={{
-						"grid-template-columns": "1fr auto 1fr",
-						"grid-template-rows": "1fr auto 1fr",
+						gridTemplateColumns: "1fr auto 1fr",
+						gridTemplateRows: "1fr auto 1fr",
 						gap: "1em",
 					}}
 				>
