@@ -36,7 +36,7 @@ const availableTemplates = await getCollection("templates");
 
 const template = await getTemplate(
 	data.nodeByUri,
-	availableTemplates.map((template) => template.data)
+	availableTemplates.map((template) => template.data),
 );
 
 Astro.locals.uri = uri;

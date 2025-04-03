@@ -1,28 +1,24 @@
 {
-  "extends": [
-    "config:base",
-    "schedule:monthly",
-    ":disablePeerDependencies"
-  ],
-  "major": {
-    "masterIssueApproval": true
-  },
-  "masterIssue": true,
-  "rangeStrategy": "bump",
-  "prHourlyLimit": 0,
-  "packageRules": [
-    {
-      "groupName": "minor updates",
-      "updateTypes": ["minor"]
-    },
-    {
-      "groupName": "patch updates",
-      "updateTypes": ["patch"]
-    },
-    {
-      "matchPackageNames": ["gatsby-source-wordpress-experimental"],
-      "updateTypes": ["major"],
-      "masterIssueApproval": false
-    }
-  ]
+	"extends": ["config:base", "schedule:monthly", ":disablePeerDependencies"],
+	"major": {
+		"masterIssueApproval": true
+	},
+	"masterIssue": true,
+	"rangeStrategy": "bump",
+	"prHourlyLimit": 0,
+	"packageRules": [
+		{
+			"groupName": "minor updates",
+			"updateTypes": ["minor"]
+		},
+		{
+			"groupName": "patch updates",
+			"updateTypes": ["patch"]
+		},
+		{
+			"matchPackageNames": ["gatsby-source-wordpress-experimental"],
+			"updateTypes": ["major"],
+			"masterIssueApproval": false
+		}
+	]
 }

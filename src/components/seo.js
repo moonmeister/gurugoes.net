@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
 export default function SEO({
-	description = '',
-	lang = 'en',
-	type = 'website',
+	description = "",
+	lang = "en",
+	type = "website",
 	meta = [],
 	title,
 	data = {},
@@ -104,7 +104,7 @@ export default function SEO({
 		]);
 	}
 
-	if (type === 'article') {
+	if (type === "article") {
 		if (data?.modified)
 			ogCard.push({
 				name: `og:article:modified_time `,
@@ -119,10 +119,10 @@ export default function SEO({
 		const jsonLdImage = data?.featuredImage?.node.resize.src;
 
 		jsonLd.push({
-			type: 'application/ld+json',
+			type: "application/ld+json",
 			innerHTML: JSON.stringify({
-				'@context': 'https://schema.org',
-				'@type': 'BlogPosting',
+				"@context": "https://schema.org",
+				"@type": "BlogPosting",
 				headline: metaTitle,
 				abstract: metaDescription,
 				dateModified: data?.modified,
@@ -150,11 +150,11 @@ export default function SEO({
 			title={metaTitle}
 			titleTemplate={`${siteTitle} · ${
 				currentCategory &&
-				currentCategory !== 'all' &&
+				currentCategory !== "all" &&
 				currentCategory !== metaTitle
 					? `${currentCategory} · `
-					: ''
-			} ${siteTitle === metaTitle ? 'Home' : '%s'}`}
+					: ""
+			} ${siteTitle === metaTitle ? "Home" : "%s"}`}
 		/>
 	);
 }

@@ -3,7 +3,10 @@ export const prerender = false;
 import { client, gql } from "../../lib/client";
 import Base from "../../layouts/base.astro";
 import { PostContent } from "../../components/post/Content";
-import { CommentSection, getCommentData } from "../../components/comments/section";
+import {
+	CommentSection,
+	getCommentData,
+} from "../../components/comments/section";
 
 if (!Astro.locals.uri) {
 	return Astro.rewrite("/404");
@@ -23,7 +26,6 @@ const query = gql`
 const contentResponse = await client.query(query, {
 	uri: Astro.locals.uri,
 });
-
 ---
 
 <Base currentUri={Astro.locals.uri}>
@@ -33,10 +35,14 @@ const contentResponse = await client.query(query, {
 			contentResponse.error ? (
 				<div class="text-red-500">{contentResponse.error}</div>
 			) : (
-				<PostContent data={contentResponse.data.post} />
-				<CommentSection client:load data={getCommentData(contentResponse.data.post)} />
+				<>
+					<PostContent data={contentResponse.data.post} />
+					<CommentSection
+						client:load
+						data={getCommentData(contentResponse.data.post)}
+					/>
+				</>
 			)
 		}
-
 	</div>
 </Base>

@@ -30,7 +30,7 @@ const archivePromise = client.query(
 	`,
 	{
 		after: null,
-	}
+	},
 );
 
 const pagePromise = client.query(
@@ -49,7 +49,7 @@ const pagePromise = client.query(
 			}
 		}
 	`,
-	{}
+	{},
 );
 
 const [archiveResults, pageResults] = await Promise.all([
