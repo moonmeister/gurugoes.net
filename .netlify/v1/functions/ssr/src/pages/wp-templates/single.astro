@@ -1,0 +1,48 @@
+---
+export const prerender = false;
+import { client, gql } from "../../lib/client";
+import Base from "../../layouts/base.astro";
+import { PostContent } from "../../components/post/Content";
+import {
+	CommentSection,
+	getCommentData,
+} from "../../components/comments/section";
+
+if (!Astro.locals.uri) {
+	return Astro.rewrite("/404");
+}
+
+const query = gql`
+	query GetComments($uri: ID!) {
+		post(id: $uri, idType: URI) {
+			...CommentSection
+			...PostContent
+		}
+	}
+	${PostContent.fragment}
+	${CommentSection.fragment}
+`;
+
+const contentResponse = await client.query(query, {
+	uri: Astro.locals.uri,
+});
+---
+
+<Base currentUri={Astro.locals.uri}>
+	<!-- <Seo type="article" data={wpPost} /> -->
+	<div class="relative bg-white rounded-3xl overflow-hidden">
+		{
+			contentResponse.error ? (
+				<div class="text-red-500">{contentResponse.error}</div>
+			) : (
+				<>
+					<PostContent data={contentResponse.data.post} />
+					<CommentSection
+						client:load
+						data={getCommentData(contentResponse.data.post)}
+					/>
+				</>
+			)
+		}
+	</div>
+</Base>
