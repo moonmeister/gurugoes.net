@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
-import { Link } from "./links.jsx";
+import { Link } from "./links";
 import { gql } from "@urql/core";
 
 const MobileMenuItem = ({ href, children, ...rest }) => (

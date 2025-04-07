@@ -27,12 +27,11 @@ const categoryResults = await client.query(
 		}
 		${ARCHIVE_FRAGMENT}
 	`,
-	{ uri: Astro.locals.uri },
+	{ uri: Astro.locals.uri }
 );
 ---
 
 <Base currentUri={Astro.locals.uri}>
-	<!-- <Seo data={data.wpCategory} /> -->
 	<section class="">
 		<div class="text-center">
 			<h1

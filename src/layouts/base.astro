@@ -2,15 +2,35 @@
 interface Props {
 	currentUri: string;
 }
-
+import { SEO } from "../components/seo.jsx";
 import { Header, QUERY as HEADER_QUERY } from "../components/header.jsx";
 import { Footer } from "../components/footer.jsx";
-import { client } from "../lib/client";
+import { client, gql } from "../lib/client";
 import "../styles/global.css";
 
-const headerResults = await client.query(HEADER_QUERY, {});
-
 const { currentUri } = Astro.props;
+
+const headerPromise = client.query(HEADER_QUERY, {});
+const seoPromise = client.query(
+	gql`
+		query GetSEO($uri: String!) {
+			generalSettings {
+				title
+				description
+			}
+			nodeByUri(uri: $uri) {
+				...SEO
+			}
+		}
+		${SEO.fragment}
+	`,
+	{ uri: currentUri }
+);
+
+const [headerResults, seoResults] = await Promise.all([
+	headerPromise,
+	seoPromise,
+]);
 ---
 
 <!doctype html>
@@ -23,11 +43,13 @@ const { currentUri } = Astro.props;
 		<link
 			rel="stylesheet preload"
 			href="https://rsms.me/inter/inter.css"
-		/><link
-			rel="stylesheet preload"
-			href="https://rsms.me/inter/inter.css"
-		/><title>GuruGoes</title></head
-	>
+		/><link rel="stylesheet preload" href="https://rsms.me/inter/inter.css" />
+
+		<SEO
+			data={seoResults.data.nodeByUri}
+			siteData={seoResults.data.generalSettings}
+		/>
+	</head>
 </html>
 <body>
 	<div class="grid auto-cols-auto grid-cols-1">
