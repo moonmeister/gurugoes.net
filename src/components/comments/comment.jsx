@@ -13,23 +13,23 @@ export default function Comment({ comment, depth = 0 }) {
 
 	return (
 		<li
-			className={`p-4 list-none bg-gray-100 even:bg-gray-300 rounded-sm ml-${
+			className={`p-4 list-none bg-gray-100 even:bg-gray-300 rounded-xs ml-${
 				depth * 4
 			}`}
 		>
-			<div class="flex space-x-3">
-				<div class="flex-1 space-y-1">
-					<div class="flex items-center justify-between">
-						<h3 class="text-sm font-medium">{name}</h3>
-						<p class="text-xs text-gray-600">{formatDate(dateGmt)}</p>
+			<div className="flex space-x-3">
+				<div className="flex-1 space-y-1">
+					<div className="flex items-center justify-between">
+						<h3 className="text-sm font-medium">{name}</h3>
+						<p className="text-xs text-gray-600">{formatDate(dateGmt)}</p>
 					</div>
 					<div
-						class="text-sm prose-green"
+						className="text-sm prose-green"
 						dangerouslySetInnerHTML={{ __html: content }}
 					/>
 					{MAX_DEPTH > depth ? (
-						<div class="text-sm text-gray-700">
-							<button type="button" class="hover:underline">
+						<div className="text-sm text-gray-700">
+							<button type="button" className="hover:underline">
 								reply
 							</button>
 						</div>

@@ -5,14 +5,17 @@ import { classNames } from "../../lib/strings";
 import { buttonClasses } from "../links";
 
 const inputStyles =
-	"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md";
+	"shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md";
 
 export function Label({ htmlFor, value, children }) {
 	return (
 		<div className="p-2">
-			<label htmlFor={htmlFor} class="block text-sm font-semibold text-black">
+			<label
+				htmlFor={htmlFor}
+				className="block text-sm font-semibold text-black"
+			>
 				{value}
-				<div class="mt-1">{children}</div>
+				<div className="mt-1">{children}</div>
 			</label>
 		</div>
 	);
@@ -48,7 +51,7 @@ export function Textarea({ className, name, reg = {}, ...props }) {
 
 export function Description({ children, ...props }) {
 	return (
-		<p {...props} class=" text-sm font-light text-black">
+		<p {...props} className=" text-sm font-light text-black">
 			{children}
 		</p>
 	);

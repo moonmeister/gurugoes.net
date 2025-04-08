@@ -21,7 +21,7 @@ export function PostContent({ data }) {
 						<FeaturedImage data={featuredImage} className="max-h-96" />
 					</div>
 					<h1 className="z-10 row-start-2 row-end-3 col-start-2 col-end-3">
-						<span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-white sm:text-4xl bg-green-700 bg-opacity-50 p-2 rounded-lg">
+						<span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-white sm:text-4xl bg-green-700/50 p-2 rounded-lg">
 							{title}
 						</span>
 					</h1>
