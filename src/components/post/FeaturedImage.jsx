@@ -5,10 +5,10 @@ export function FeaturedImage({ data, className, children }) {
 	const featuredImage = data?.node;
 	return (
 		<>
-			{featuredImage.src ? (
+			{featuredImage.sourceUrl ? (
 				<img
 					className={classNames("w-full object-cover", className)}
-					src={featuredImage.src}
+					src={featuredImage.sourceUrl}
 					srcSet={featuredImage.srcSet}
 					alt={featuredImage.altText}
 				>
