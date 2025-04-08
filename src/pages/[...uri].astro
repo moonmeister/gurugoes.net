@@ -40,7 +40,7 @@ export const getStaticPaths = (async () => {
 			}
 		`,
 		(data) => data.terms.nodes,
-		(data) => data.terms.pageInfo
+		(data) => data.terms.pageInfo,
 	);
 
 	const wpContent = await fetchAllPaginated(
@@ -64,7 +64,7 @@ export const getStaticPaths = (async () => {
 			}
 		`,
 		(data) => data.contentNodes.nodes,
-		(data) => data.contentNodes.pageInfo
+		(data) => data.contentNodes.pageInfo,
 	);
 
 	return [...wpContent, ...wpCategories].map((nodeWithUri) => {
@@ -87,7 +87,7 @@ const availableTemplates = await getCollection("templates");
 
 const template = await getTemplate(
 	data.nodeByUri,
-	availableTemplates.map((template) => template.data)
+	availableTemplates.map((template) => template.data),
 );
 
 Astro.locals.uri = uri;

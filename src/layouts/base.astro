@@ -24,7 +24,7 @@ const seoPromise = client.query(
 		}
 		${SEO.fragment}
 	`,
-	{ uri: currentUri }
+	{ uri: currentUri },
 );
 
 const [headerResults, seoResults] = await Promise.all([
