@@ -15,3 +15,24 @@ export const client = new Client({
 		fetchExchange,
 	],
 });
+
+export const fetchAllPaginated = async (query, getData, getPageInfo) => {
+	const allData = [];
+	let hasNextPage = true;
+	let after = null;
+
+	while (hasNextPage) {
+		const { data, error } = await client.query(query, { after });
+
+		if (error) {
+			console.error("Error fetching paginated data:", error);
+			break;
+		}
+
+		allData.push(...getData(data));
+		after = getPageInfo(data).endCursor;
+		hasNextPage = getPageInfo(data).hasNextPage;
+	}
+
+	return allData;
+};

@@ -46,7 +46,7 @@ const [headerResults, seoResults] = await Promise.all([
 		/><link rel="stylesheet preload" href="https://rsms.me/inter/inter.css" />
 
 		<SEO
-			data={seoResults.data.nodeByUri}
+			data={seoResults?.data?.nodeByUri}
 			siteData={seoResults.data.generalSettings}
 		/>
 	</head>
