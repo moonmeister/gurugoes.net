@@ -9,8 +9,6 @@ import { getTemplate } from "../lib/templates";
 import { getCollection } from "astro:content";
 import { fetchAllPaginated, gql } from "../lib/client";
 
-export const prerender = true;
-
 export const getStaticPaths = (async () => {
 	const wpCategories = await fetchAllPaginated(
 		gql`
