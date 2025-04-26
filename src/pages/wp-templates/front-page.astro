@@ -6,8 +6,8 @@ import {
 	FRAGMENT as ARCHIVE_FRAGMENT,
 } from "@/components/post/Archive";
 
-if (Astro.url.pathname === Astro.originPathname) {
-	return Astro.redirect("/wp-template-direct");
+if (Astro.url.pathname === Astro.originPathname + "/") {
+	return Astro.rewrite("/wp-template-direct");
 }
 
 const archivePromise = client.query(

@@ -78,10 +78,8 @@ const template = await getTemplate(
 );
 
 if (template) {
-	return Astro.rewrite(template?.path);
+	return Astro.rewrite(template.path);
 }
-
-Astro.response.status = 404;
 ---
 
 <title>Not found</title>

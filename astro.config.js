@@ -12,7 +12,6 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
-
 	env: {
 		schema: {
 			WP_URL: envField.string({
