@@ -89,7 +89,7 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 	data-closed="true"
 >
 	<div
-		class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
+		class="rounded-lg shadow-md bg-white ring-1 ring-black/5 overflow-hidden"
 	>
 		<div class="px-5 pt-4 flex items-center justify-between">
 			<div class="mr-2">
@@ -123,7 +123,7 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 						<div class="px-2 pt-2 pb-3" role="none">
 							<Link
 								href={uri}
-								class="block px-3 py-2 hover:bg-gray-50"
+								className="block px-3 py-2 hover:bg-gray-50"
 								role="menuitem"
 							>
 								{name}
