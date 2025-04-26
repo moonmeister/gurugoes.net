@@ -1,0 +1,74 @@
+---
+import { SEO } from "@/components/seo.jsx";
+import Header from "@/components/header.astro";
+import { Footer } from "@/components/footer.jsx";
+import { client, gql } from "@/lib/client";
+import "@/styles/global.css";
+
+const currentUri = Astro.originPathname;
+
+const settingsPromise = client.query(
+	gql`
+		query GetSettings {
+			generalSettings {
+				title
+				description
+			}
+		}
+	`,
+	{}
+);
+const seoPromise = currentUri
+	? client.query(
+			gql`
+				query GetSEO($uri: String!) {
+					nodeByUri(uri: $uri) {
+						...SEO
+					}
+				}
+				${SEO.fragment}
+			`,
+			{ uri: currentUri }
+		)
+	: Promise.resolve(null);
+
+const [seoResults, settingsResults] = await Promise.all([
+	seoPromise,
+	settingsPromise,
+]);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet preload" href="https://rsms.me/inter/inter.css" />
+
+		<SEO
+			data={seoResults?.data?.nodeByUri}
+			siteData={settingsResults.data.generalSettings}
+		/>
+	</head>
+</html>
+<body>
+	<div class="grid auto-cols-auto grid-cols-1">
+		<header class="row-start-1 row-end-2 col-start-1 col-end-2 z-10 p-4">
+			<Header />
+		</header>
+		<div class="row-start-1 row-end-3 col-start-1 col-end-2">
+			<div class="relative bg-green-100 overflow-hidden">
+				<div class="relative pt-6 pb-16 sm:pb-24">
+					<main class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24">
+						<slot />
+					</main>
+				</div>
+			</div>
+		</div>
+		<footer class="row-start-3 row-end-4 col-start-1 col-end-2">
+			<Footer />
+		</footer>
+	</div>
+</body>

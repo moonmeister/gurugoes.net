@@ -1,5 +1,1 @@
-node_modules/
-.cache/
-public/
-.netlify/
-wordpress
+pnpm-lock.yaml
