@@ -1,9 +1,9 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useEffect } from "react";
-import { Button } from "../links";
+import { Button } from "@/components/links";
 
 import { Label, Input, Description, Textarea, Submit, Error } from "./inputs";
-import { useAuth } from "../../hooks/use-auth";
+import { useAuth } from "@/hooks/use-auth";
 import { useMutation, gql } from "urql";
 
 export default function SubmitComment({ data: { postId } }) {

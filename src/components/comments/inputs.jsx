@@ -1,8 +1,8 @@
 import { useFormContext } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
-import { classNames } from "../../lib/strings";
-import { buttonClasses } from "../links";
+import { classNames } from "@/lib/strings";
+import { buttonClasses } from "@/components/links";
 
 const inputStyles =
 	"shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md";

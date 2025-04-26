@@ -1,18 +1,14 @@
 ---
-import type {
-	GetStaticPaths,
-	InferGetStaticParamsType,
-	InferGetStaticPropsType,
-} from "astro";
-import { getSeedQuery } from "../lib/seedQuery";
-import { getTemplate } from "../lib/templates";
+import type { GetStaticPaths, InferGetStaticParamsType } from "astro";
+import { getSeedQuery } from "@/lib/seedQuery";
+import { getTemplate } from "@/lib/templates";
 import { getCollection } from "astro:content";
-import { fetchAllPaginated, gql } from "../lib/client";
+import { fetchAllPaginated, gql } from "@/lib/client";
 
 export const getStaticPaths = (async () => {
 	const wpCategories = await fetchAllPaginated(
 		gql`
-			query AllStaticPaths($fist: Int = 5, $after: String) {
+			query AllStaticTerms($fist: Int = 5, $after: String) {
 				terms(
 					first: $fist
 					after: $after
@@ -36,7 +32,7 @@ export const getStaticPaths = (async () => {
 
 	const wpContent = await fetchAllPaginated(
 		gql`
-			query AllStaticPaths($fist: Int = 5, $after: String) {
+			query AllStaticContent($fist: Int = 5, $after: String) {
 				contentNodes(
 					first: $fist
 					after: $after
@@ -58,7 +54,7 @@ export const getStaticPaths = (async () => {
 		(data) => data.contentNodes.pageInfo
 	);
 
-	return [...wpContent, ...wpCategories].map((nodeWithUri) => {
+	return [...wpContent, ...wpCategories, {}].map((nodeWithUri) => {
 		return {
 			params: { uri: nodeWithUri.uri },
 			props: { uri: nodeWithUri.uri },
@@ -81,13 +77,16 @@ const template = await getTemplate(
 	availableTemplates.map((template) => template.data)
 );
 
-Astro.locals.uri = uri;
-
 if (template) {
 	return Astro.rewrite(template?.path);
 }
+
+Astro.response.status = 404;
 ---
 
-<div>Something is wrong if you're seeing this</div>
+<title>Not found</title>
+<h1>
+	We found you page but couldn't find a template by which to render the content.
+</h1>
 <pre>{JSON.stringify(template, null, 2)}</pre>
 <pre>{JSON.stringify(data, null, 2)}</pre>

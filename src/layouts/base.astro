@@ -1,16 +1,12 @@
 ---
-interface Props {
-	currentUri?: string;
-}
-import { SEO } from "../components/seo.jsx";
-import { Header, QUERY as HEADER_QUERY } from "../components/header.jsx";
-import { Footer } from "../components/footer.jsx";
-import { client, gql } from "../lib/client";
-import "../styles/global.css";
+import { SEO } from "@/components/seo.jsx";
+import Header from "@/components/header.astro";
+import { Footer } from "@/components/footer.jsx";
+import { client, gql } from "@/lib/client";
+import "@/styles/global.css";
 
-const currentUri = Astro.locals.uri;
+const currentUri = Astro.originPathname;
 
-const headerPromise = client.query(HEADER_QUERY, {});
 const settingsPromise = client.query(
 	gql`
 		query GetSettings {
@@ -36,8 +32,7 @@ const seoPromise = currentUri
 		)
 	: Promise.resolve(null);
 
-const [headerResults, seoResults, settingsResults] = await Promise.all([
-	headerPromise,
+const [seoResults, settingsResults] = await Promise.all([
 	seoPromise,
 	settingsPromise,
 ]);
@@ -61,11 +56,7 @@ const [headerResults, seoResults, settingsResults] = await Promise.all([
 <body>
 	<div class="grid auto-cols-auto grid-cols-1">
 		<header class="row-start-1 row-end-2 col-start-1 col-end-2 z-10 p-4">
-			<Header
-				client:load
-				categories={headerResults.data?.categories?.nodes}
-				currentPage={currentUri}
-			/>
+			<Header />
 		</header>
 		<div class="row-start-1 row-end-3 col-start-1 col-end-2">
 			<div class="relative bg-green-100 overflow-hidden">

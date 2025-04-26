@@ -1,4 +1,4 @@
-import { classNames as cn } from "../lib/strings";
+import { classNames as cn } from "@/lib/strings";
 
 export const buttonClasses =
 	"font-medium text-green-700 rounded-full bg-gray-50 p-3 border-green-700 hover:text-green-900 focus:border-2";

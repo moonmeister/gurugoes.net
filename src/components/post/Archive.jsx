@@ -1,6 +1,6 @@
 import { gql } from "@urql/core";
-import { Link } from "../links";
-import { Time, ReadingTime } from "../time";
+import { Link } from "@/components/links";
+import { Time, ReadingTime } from "@/components/time";
 
 export function ArchiveView({ posts }) {
 	return (

@@ -1,13 +1,13 @@
 ---
-import Base from "../../layouts/base.astro";
-import { client, gql } from "../../lib/client";
+import Base from "@/layouts/base.astro";
+import { client, gql } from "@/lib/client";
 import {
 	ArchiveView,
 	FRAGMENT as ARCHIVE_FRAGMENT,
-} from "../../components/post/Archive";
+} from "@/components/post/Archive";
 
-if (!Astro.locals.uri) {
-	return Astro.rewrite("/404");
+if (Astro.url.pathname === Astro.originPathname) {
+	return Astro.redirect("/wp-template-direct");
 }
 
 const archivePromise = client.query(
@@ -28,7 +28,7 @@ const archivePromise = client.query(
 	`,
 	{
 		after: null,
-	},
+	}
 );
 
 const pagePromise = client.query(
@@ -47,7 +47,7 @@ const pagePromise = client.query(
 			}
 		}
 	`,
-	{},
+	{}
 );
 
 const [archiveResults, pageResults] = await Promise.all([
@@ -62,7 +62,7 @@ const {
 // console.log({ locals: Astro.locals, params: Astro.params });
 ---
 
-<Base currentUri={Astro.locals.uri}>
+<Base>
 	<section
 		class="sm:grid items-center grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 lg:gap-16 md:gap-8 gap-4"
 	>

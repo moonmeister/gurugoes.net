@@ -1,14 +1,11 @@
 ---
-import { client, gql } from "../../lib/client";
-import Base from "../../layouts/base.astro";
-import { PostContent } from "../../components/post/Content";
-import {
-	CommentSection,
-	getCommentData,
-} from "../../components/comments/section";
+import { client, gql } from "@/lib/client";
+import Base from "@/layouts/base.astro";
+import { PostContent } from "@/components/post/Content";
+import { CommentSection, getCommentData } from "@/components/comments/section";
 
-if (!Astro.locals.uri) {
-	return Astro.rewrite("/404");
+if (Astro.url.pathname === Astro.originPathname) {
+	return Astro.redirect("/wp-template-direct");
 }
 
 const query = gql`
@@ -23,11 +20,11 @@ const query = gql`
 `;
 
 const contentResponse = await client.query(query, {
-	uri: Astro.locals.uri,
+	uri: Astro.originPathname,
 });
 ---
 
-<Base currentUri={Astro.locals.uri}>
+<Base>
 	<!-- <Seo type="article" data={wpPost} /> -->
 	<div class="relative bg-white rounded-3xl overflow-hidden">
 		{

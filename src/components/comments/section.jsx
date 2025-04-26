@@ -1,8 +1,8 @@
 import { gql, Provider as ClientProvider } from "urql";
-import { client } from "../../lib/client";
+import { client } from "@/lib/client";
 import { CommentList } from "./list";
 import CommentForm from "./submit";
-import { ProvideAuth } from "../../hooks/use-auth";
+import { ProvideAuth } from "@/hooks/use-auth";
 
 export function CommentSection({ data }) {
 	const { commentStatus, postId } = data;

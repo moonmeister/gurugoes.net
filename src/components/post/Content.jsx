@@ -1,8 +1,8 @@
-import { gql } from "@urql/core";
+import { gql } from "@/lib/client";
 import { FeaturedImage } from "./FeaturedImage";
-import { Time, ReadingTime } from "../time";
+import { Time, ReadingTime } from "@/components/time";
 
-import "../../styles/wpBlocks.css";
+import "@/styles/wpBlocks.css";
 
 export function PostContent({ data }) {
 	const { content, title, dateGmt, featuredImage } = data;

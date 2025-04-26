@@ -1,4 +1,4 @@
-import { formatDate } from "../../lib/strings";
+import { formatDate } from "@/lib/strings";
 
 const MAX_DEPTH = 0;
 

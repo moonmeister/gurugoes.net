@@ -1,5 +1,5 @@
 import { gql } from "@urql/core";
-import { classNames } from "../../lib/strings";
+import { classNames } from "@/lib/strings";
 
 export function FeaturedImage({ data, className, children }) {
 	const featuredImage = data?.node;

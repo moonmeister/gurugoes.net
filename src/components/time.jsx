@@ -1,6 +1,6 @@
 import readingTime from "reading-time";
 
-import { formatDate, durationFromTime } from "../lib/strings";
+import { formatDate, durationFromTime } from "@/lib/strings";
 
 export function Time({ dateTime, locale }) {
 	return <time dateTime={dateTime}>{formatDate(dateTime, locale)}</time>;

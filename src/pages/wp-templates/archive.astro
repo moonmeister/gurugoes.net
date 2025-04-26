@@ -1,13 +1,13 @@
 ---
-import Base from "../../layouts/base.astro";
-import { client, gql } from "../../lib/client";
+import Base from "@/layouts/base.astro";
+import { client, gql } from "@/lib/client";
 import {
 	ArchiveView,
 	FRAGMENT as ARCHIVE_FRAGMENT,
-} from "../../components/post/Archive";
+} from "@/components/post/Archive";
 
-if (!Astro.locals.uri) {
-	return Astro.rewrite("/404");
+if (Astro.url.pathname === Astro.originPathname) {
+	return Astro.redirect("/wp-template-direct");
 }
 
 const categoryResults = await client.query(
@@ -25,11 +25,11 @@ const categoryResults = await client.query(
 		}
 		${ARCHIVE_FRAGMENT}
 	`,
-	{ uri: Astro.locals.uri },
+	{ uri: Astro.originPathname }
 );
 ---
 
-<Base currentUri={Astro.locals.uri}>
+<Base>
 	<section class="">
 		<div class="text-center">
 			<h1
