@@ -34,7 +34,7 @@ const contentResponse = await client.query(query, {
 				<>
 					<PostContent data={contentResponse.data.post} />
 					<CommentSection
-						client:load
+						client:visible
 						data={getCommentData(contentResponse.data.post)}
 					/>
 				</>
