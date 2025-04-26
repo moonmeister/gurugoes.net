@@ -8,39 +8,55 @@
 	}
 
 	/* Block: Image  ------------------------- */
+
 	.wp-block-image {
 		@apply block mt-6;
 
 		figure {
-			@apply flex flex-col max-w-min;
+			@apply flex flex-col;
 		}
 
 		figcaption {
-			@apply m-2 text-sm text-center;
+			@apply m-2 text-sm;
 		}
 
 		.aligncenter {
 			@apply mx-auto;
+
+			img {
+				@apply mx-auto;
+			}
+			figcaption {
+				@apply text-center;
+			}
 		}
 
 		.alignright {
-			@apply float-right ml-16;
+			@apply float-right ml-8;
 		}
 
 		.alignleft {
-			@apply float-left mr-16;
+			@apply float-left mr-8;
 		}
 
-		&.is-style-rounded .gatsby-image-wrapper {
+		&.is-style-rounded img {
 			@apply rounded-full;
 		}
 
-		.full-size img {
-			max-width: 100%;
+		.size-full {
+			@apply: w-[80%];
 		}
 
-		.size-large .gatsby-image-wrapper {
-			@apply w-full;
+		.size-large {
+			@apply w-[80%];
+		}
+
+		/* .size-medium {
+			@apply w-[60%];
+		} */
+
+		.size-medium {
+			@apply w-[50%];
 		}
 	}
 
