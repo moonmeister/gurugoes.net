@@ -11,7 +11,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@astrojs/netlify": "^6.3.4",
+		"@astrojs/netlify": "^6.4.1",
 		"@astrojs/react": "^4.3.0",
 		"@headlessui/react": "^2.2.4",
 		"@hookform/error-message": "^2.0.1",
@@ -20,20 +20,20 @@
 		"@tailwindcss/vite": "^4.1.8",
 		"@types/react": "^19.1.6",
 		"@types/react-dom": "^19.1.6",
-		"@urql/core": "^5.1.1",
+		"@urql/core": "^5.2.0",
 		"@urql/exchange-persisted": "^4.3.1",
-		"astro": "^5.8.2",
+		"astro": "^5.11.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"react-hook-form": "^7.57.0",
+		"react-hook-form": "^7.60.0",
 		"reading-time": "^1.5.0",
 		"tailwindcss": "^4.1.8",
 		"urql": "^4.2.2"
 	},
-	"packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912",
+	"packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184",
 	"devDependencies": {
 		"netlify-cli": "^20.1.1",
-		"prettier": "3.5.3",
+		"prettier": "3.6.2",
 		"prettier-plugin-astro": "0.14.1"
 	}
 }
