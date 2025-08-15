@@ -1,9 +1,8 @@
 ---
 import type { GetStaticPaths, InferGetStaticParamsType } from "astro";
-import { getSeedQuery } from "@/lib/seedQuery";
-import { getTemplate } from "@/lib/templates";
-import { getCollection } from "astro:content";
 import { fetchAllPaginated, gql } from "@/lib/client";
+import { idToTemplate } from "@/lib/templates";
+
 
 export const getStaticPaths = (async () => {
 	const wpCategories = await fetchAllPaginated(
@@ -63,28 +62,21 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-// type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { uri = "/" } = Astro.params as Params;
 // const uri = Astro.url.pathname || "/";
 
-const { data } = await getSeedQuery({ uri });
+const {Template, data} = await idToTemplate({ uri });
 
-const availableTemplates = await getCollection("templates");
-
-const template = await getTemplate(
-	data.nodeByUri,
-	availableTemplates.map((template) => template.data)
-);
-
-if (template) {
-	return Astro.rewrite(template.path);
-}
 ---
 
-<title>Not found</title>
-<h1>
-	We found you page but couldn't find a template by which to render the content.
-</h1>
-<pre>{JSON.stringify(template, null, 2)}</pre>
-<pre>{JSON.stringify(data, null, 2)}</pre>
+{
+	Template ? <Template seedQuery={data} /> : 
+	(<title>Not found</title>
+	<h1>
+		We found you page but couldn't find a template by which to render the content.
+	</h1>
+	<pre>{JSON.stringify(Template, null, 2)}</pre>
+	<pre>{JSON.stringify(data, null, 2)}</pre>
+	)
+}
