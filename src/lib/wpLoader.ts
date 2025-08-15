@@ -1,6 +1,6 @@
 import type { Loader } from "astro/loaders";
 import type { AnyVariables, Client, TypedDocumentNode } from "@urql/core";
-import { gql } from "@urql/core";
+
 export function wpLoader(options: {
 	client: Client;
 	gql: { query: TypedDocumentNode; variables: AnyVariables };

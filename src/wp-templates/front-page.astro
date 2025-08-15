@@ -6,10 +6,6 @@ import {
 	FRAGMENT as ARCHIVE_FRAGMENT,
 } from "@/components/post/Archive";
 
-if (Astro.url.pathname === Astro.originPathname + "/") {
-	return Astro.rewrite("/wp-template-direct");
-}
-
 const archivePromise = client.query(
 	gql`
 		query getPostData($first: Int = 10, $after: String = null) {
@@ -58,8 +54,6 @@ const [archiveResults, pageResults] = await Promise.all([
 const {
 	data: { page },
 } = pageResults;
-
-// console.log({ locals: Astro.locals, params: Astro.params });
 ---
 
 <Base>

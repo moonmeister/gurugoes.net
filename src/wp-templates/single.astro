@@ -4,9 +4,6 @@ import Base from "@/layouts/base.astro";
 import { PostContent } from "@/components/post/Content";
 import { CommentSection, getCommentData } from "@/components/comments/section";
 
-if (Astro.url.pathname === Astro.originPathname + "/") {
-	return Astro.rewrite("/wp-template-direct");
-}
 const query = gql`
 	query GetComments($uri: ID!) {
 		post(id: $uri, idType: URI) {

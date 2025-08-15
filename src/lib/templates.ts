@@ -1,3 +1,6 @@
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { getSeedQuery } from "@/lib/seedQuery";
+import availableTemplates from "@/wp-templates";
 export interface SeedNode {
 	__typename?: string;
 	uri?: string;
@@ -20,11 +23,6 @@ export interface SeedNode {
 		templateName?: string;
 	};
 	userId?: number;
-}
-
-export interface WordPressTemplate {
-	id: string;
-	path: string;
 }
 
 export function getPossibleTemplates(node: SeedNode) {
@@ -165,10 +163,10 @@ export function getPossibleTemplates(node: SeedNode) {
 	return possibleTemplates;
 }
 
-export async function getTemplate(
+export function getTemplate(
 	seedNode: SeedNode | null | undefined,
-	templates: WordPressTemplate[] | undefined,
-): Promise<WordPressTemplate | undefined> {
+	templates: { [key: string]: AstroComponentFactory } | undefined,
+): AstroComponentFactory | undefined {
 	if (!seedNode) {
 		return undefined;
 	}
@@ -177,14 +175,42 @@ export async function getTemplate(
 
 	// eslint-disable-next-line no-plusplus
 	for (const possibleTemplate of possibleTemplates) {
-		const templateFromConfig = templates?.find(
-			(template) => template.id === possibleTemplate,
-		);
-
+		const templateFromConfig = templates?.[possibleTemplate];
 		if (!templateFromConfig) {
 			continue;
 		}
 
 		return templateFromConfig;
 	}
+}
+
+export async function idToTemplate({
+	uri,
+	id,
+	asPreview,
+}: {
+	uri?: string;
+	id?: string;
+	asPreview?: boolean;
+}) {
+	const { data } = await getSeedQuery({ uri, id, asPreview });
+
+	const node = data?.nodeByUri || data?.contentNode;
+
+	if (!node) {
+		throw new Error("Node not found", {
+			cause: new Error(`No node found for uri: ${uri} or id: ${id}`),
+		});
+	}
+
+	const Template = await getTemplate(node, availableTemplates);
+
+	if (!Template) {
+		throw new Error("Template not found");
+	}
+
+	return {
+		data,
+		Template,
+	};
 }
