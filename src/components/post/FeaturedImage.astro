@@ -1,6 +1,5 @@
 ---
 import { gql } from "@urql/core";
-import { classNames } from "@/lib/strings";
 
 export interface Props {
 	data: {
@@ -32,7 +31,7 @@ const featuredImage = data?.node;
 
 {featuredImage?.sourceUrl ? (
 	<img
-		class={classNames("w-full object-cover", className)}
+		class:list={["w-full object-cover", className]}
 		src={featuredImage.sourceUrl}
 		srcset={featuredImage.srcSet}
 		alt={featuredImage.altText}
@@ -40,7 +39,7 @@ const featuredImage = data?.node;
 		<slot />
 	</img>
 ) : (
-	<div class={classNames("bg-green-600", className)}>
+	<div class:list={["bg-green-600", className]}>
 		<slot />
 	</div>
 )}

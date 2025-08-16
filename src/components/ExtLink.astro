@@ -1,6 +1,4 @@
 ---
-import { classNames as cn } from "@/lib/strings";
-
 const { to, href, override = false, class: className, ...rest } = Astro.props;
 ---
 
@@ -8,7 +6,7 @@ const { to, href, override = false, class: className, ...rest } = Astro.props;
 	{...rest}
 	href={href || to}
 	rel="noopener"
-	class={cn({ button: !override }, className)}
+	class:list={[{ button: !override }, className]}
 >
 	<slot />
 </a>
