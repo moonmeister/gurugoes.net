@@ -1,0 +1,7 @@
+---
+import { formatDate } from "@/lib/strings";
+
+const { dateTime, locale } = Astro.props;
+---
+
+<time datetime={dateTime}>{formatDate(dateTime, locale)}</time>
