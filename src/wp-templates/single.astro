@@ -1,7 +1,9 @@
 ---
 import { client, gql } from "@/lib/client";
 import Base from "@/layouts/base.astro";
-import { PostContent } from "@/components/post/Content";
+import PostContent, {
+	PostContentFragment,
+} from "@/components/post/Content.astro";
 import { CommentSection, getCommentData } from "@/components/comments/section";
 
 const query = gql`
@@ -11,7 +13,7 @@ const query = gql`
 			...PostContent
 		}
 	}
-	${PostContent.fragment}
+	${PostContentFragment}
 	${CommentSection.fragment}
 `;
 
@@ -21,7 +23,6 @@ const contentResponse = await client.query(query, {
 ---
 
 <Base>
-	<!-- <Seo type="article" data={wpPost} /> -->
 	<div class="relative bg-white rounded-3xl overflow-hidden">
 		{
 			contentResponse.error ? (
