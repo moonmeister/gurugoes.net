@@ -1,19 +1,25 @@
 import { ExtLink } from "./links.jsx";
 
-import { Instagram, Twitter } from "./icons/social";
+import { siInstagram, siX, siBluesky } from "simple-icons";
 
 const Socials = [
 	{
 		name: "Instagram",
 		handle: "@moon_meister",
 		link: "https://www.instagram.com/moon_meister/",
-		Icon: Instagram,
+		Icon: siInstagram,
 	},
 	{
-		name: "Twitter",
+		name: "X",
 		handle: "@moon_meister",
 		link: "https://twitter.com/moon_meister",
-		Icon: Twitter,
+		Icon: siX,
+	},
+	{
+		name: "Bluesky",
+		handle: "@moonmeister.net",
+		link: "https://bsky.app/profile/moonmeister.net",
+		Icon: siBluesky,
 	},
 ];
 
