@@ -2,9 +2,9 @@
 import Base from "@/layouts/base.astro";
 import { client, gql } from "@/lib/client";
 import {
-	ArchiveView,
-	FRAGMENT as ARCHIVE_FRAGMENT,
-} from "@/components/post/Archive";
+	default as ArchiveView,
+	PostArchiveFragment,
+} from "@/components/post/Archive.astro";
 
 const archivePromise = client.query(
 	gql`
@@ -20,7 +20,7 @@ const archivePromise = client.query(
 			}
 		}
 
-		${ARCHIVE_FRAGMENT}
+		${PostArchiveFragment}
 	`,
 	{
 		after: null,
