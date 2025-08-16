@@ -12,3 +12,9 @@
 	--breakpoint-xl: 1800px;
 	--breakpoint-2xl: 1800px;
 }
+
+@layer components {
+	.button {
+		@apply font-medium text-green-700 rounded-full bg-gray-50 p-3 border-green-700 hover:text-green-900 focus:border-2;
+	}
+}

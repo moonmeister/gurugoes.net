@@ -1,0 +1,8 @@
+---
+import { classNames as cn } from "@/lib/strings";
+const { class: className = "", override = false, ...rest } = Astro.props;
+---
+
+<a {...rest} class={cn({ button: !override }, className)}>
+	<slot />
+</a>
