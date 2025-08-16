@@ -1,41 +1,8 @@
 ---
-import { SEO } from "@/components/seo.jsx";
+import SEO from "@/components/SEO.astro";
 import Header from "@/components/header.astro";
 import Footer from "@/components/Footer.astro";
-import { client, gql } from "@/lib/client";
 import "@/styles/global.css";
-
-const currentUri = Astro.originPathname;
-
-const settingsPromise = client.query(
-	gql`
-		query GetSettings {
-			generalSettings {
-				title
-				description
-			}
-		}
-	`,
-	{}
-);
-const seoPromise = currentUri
-	? client.query(
-			gql`
-				query GetSEO($uri: String!) {
-					nodeByUri(uri: $uri) {
-						...SEO
-					}
-				}
-				${SEO.fragment}
-			`,
-			{ uri: currentUri }
-		)
-	: Promise.resolve(null);
-
-const [seoResults, settingsResults] = await Promise.all([
-	seoPromise,
-	settingsPromise,
-]);
 ---
 
 <!doctype html>
@@ -47,10 +14,7 @@ const [seoResults, settingsResults] = await Promise.all([
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet preload" href="https://rsms.me/inter/inter.css" />
 
-		<SEO
-			data={seoResults?.data?.nodeByUri}
-			siteData={settingsResults.data.generalSettings}
-		/>
+		<SEO />
 	</head>
 </html>
 <body>
