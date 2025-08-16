@@ -64,7 +64,6 @@ export const getStaticPaths = (async () => {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 
 const { uri = "/" } = Astro.params as Params;
-// const uri = Astro.url.pathname || "/";
 
 const {Template, data} = await idToTemplate({ uri });
 
