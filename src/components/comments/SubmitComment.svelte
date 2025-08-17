@@ -166,7 +166,7 @@
 	});
 </script>
 
-<div class="py-8">
+<div>
 	{#if isSubmitSuccessful}
 		<div class="flex">
 			<p>
@@ -174,90 +174,65 @@
 				approves it!
 			</p>
 			<div class="mx-auto">
-				<Button onclick={resetForm}>
-					{#snippet children()}
-						Comment Again!
-					{/snippet}
-				</Button>
+				<Button onclick={resetForm}>Comment Again!</Button>
 			</div>
 		</div>
 	{:else}
-		<form onsubmit={handleSubmit}>
+		<form onsubmit={handleSubmit} class=" flex flex-wrap gap-4">
 			<div class={user && user !== false ? "hidden" : ""}>
 				<Label value="Name" htmlFor="name">
-					{#snippet children()}
-						<Input
-							id="name"
-							type={user && user !== false ? "hidden" : "text"}
-							name="name"
-							bind:value={formData.name}
-							placeholder="Billie Jean"
-							aria-describedby="name-description"
-							required={!user || user === false}
-						/>
-						<Description id="name-description">
-							{#snippet children()}
-								Real or fake, made available with your comment.
-							{/snippet}
-						</Description>
-						{#if errors.name}
-							<p class="text-red-700 italic">{errors.name}</p>
-						{/if}
-					{/snippet}
+					<Input
+						id="name"
+						type={user && user !== false ? "hidden" : "text"}
+						name="name"
+						bind:value={formData.name}
+						placeholder="Billie Jean"
+						aria-describedby="name-description"
+						required={!user || user === false}
+					/>
+					<Description id="name-description">
+						Real or fake, made available with your comment.
+					</Description>
+					{#if errors.name}
+						<p class="text-red-700 italic">{errors.name}</p>
+					{/if}
 				</Label>
 
 				<Label value="Email" htmlFor="email">
-					{#snippet children()}
-						<Input
-							id="email"
-							type={user && user !== false ? "hidden" : "email"}
-							name="email"
-							bind:value={formData.email}
-							placeholder="heistheone@jmail.com"
-							aria-describedby="email-description"
-							required={!user || user === false}
-						/>
-						<Description id="email-description">
-							{#snippet children()}
-								We'll only use this for spam prevention.
-							{/snippet}
-						</Description>
-						{#if errors.email}
-							<p class="text-red-700 italic">{errors.email}</p>
-						{/if}
-					{/snippet}
+					<Input
+						id="email"
+						type={user && user !== false ? "hidden" : "email"}
+						name="email"
+						bind:value={formData.email}
+						placeholder="heistheone@jmail.com"
+						aria-describedby="email-description"
+						required={!user || user === false}
+					/>
+					<Description id="email-description">
+						We'll only use this for spam prevention.
+					</Description>
+					{#if errors.email}
+						<p class="text-red-700 italic">{errors.email}</p>
+					{/if}
 				</Label>
 			</div>
 
-			{#if !user || user === false}
-				<Label value="Remember me" htmlFor="rememberMe">
-					{#snippet children()}
-						<Input
-							id="rememberMe"
-							name="rememberMe"
-							type="checkbox"
-							bind:checked={formData.rememberMe}
-						/>
+			<div class="w-80 flex-grow">
+				<Label htmlFor="comment">
+					{#snippet valueSnippet()}
+						{#if !user || user === false}
+							Comment
+						{:else}
+							Comment as {user.name}&lt;{user.email}&gt;&nbsp;
+							<button
+								type="button"
+								class="text-sm underline"
+								onclick={handleSignout}
+							>
+								Logout
+							</button>
+						{/if}
 					{/snippet}
-				</Label>
-			{/if}
-
-			<Label htmlFor="comment">
-				{#snippet valueSnippet()}
-					{#if !user || user === false}
-						Comment
-					{:else}
-						Comment as {user.name}&lt;{user.email}&gt;&nbsp;
-						<button
-							type="button"
-							class="text-sm underline"
-							onclick={handleSignout}
-						>
-							Logout
-						</button>
-					{/if}
-				{/snippet}
-				{#snippet children()}
 					<Textarea
 						id="comment"
 						name="comment"
@@ -268,14 +243,31 @@
 					{#if errors.comment}
 						<p class="text-red-700 italic">{errors.comment}</p>
 					{/if}
-				{/snippet}
-			</Label>
+				</Label>
 
-			<div class="mt-2">
-				<Submit
-					value={isLoading ? "Submitting..." : "Comment"}
-					disabled={isLoading}
-				/>
+				<div class="flex items-center gap-2 p-2">
+					{#if user && user !== false}
+						<p class="text-sm">
+							Commenting as {user.name}&lt;{user.email}&gt;
+						</p>
+					{/if}
+					{#if user && user !== false}
+						<Button onclick={handleSignout}>Logout</Button>
+					{/if}
+					<Submit
+						value={isLoading ? "Submitting..." : "Comment"}
+						disabled={isLoading}
+					/>
+					{#if !user || user === false}
+						<Label value="Remember me" htmlFor="rememberMe"></Label>
+						<Input
+							id="rememberMe"
+							name="rememberMe"
+							type="checkbox"
+							bind:checked={formData.rememberMe}
+						/>
+					{/if}
+				</div>
 			</div>
 
 			{#if errors.graphql}

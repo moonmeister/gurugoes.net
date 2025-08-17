@@ -18,7 +18,7 @@
 		type="checkbox"
 		{name}
 		bind:checked
-		class={["form-inputs", "form-checkbox", className]}
+		class={["form-inputs", className]}
 		{...restProps}
 	/>
 {:else if type === "hidden"}
@@ -31,7 +31,7 @@
 		bind:value
 		{placeholder}
 		{required}
-		class={["form-inputs", "form-email", className]}
+		class={["form-inputs", className]}
 		{...restProps}
 	/>
 {:else}
@@ -42,7 +42,7 @@
 		bind:value
 		{placeholder}
 		{required}
-		class={["form-inputs", "form-text", className]}
+		class={["form-inputs", className]}
 		{...restProps}
 	/>
 {/if}

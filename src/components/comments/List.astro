@@ -25,6 +25,9 @@ const { comments } = Astro.props;
 		) : (
 			<ul class="flex flex-col gap-2">
 				{comments.map((comment) => {
+					if (comment.parentDatabaseId) {
+						return null;
+					}
 					const { databaseId } = comment;
 					return <Comment comment={comment} />;
 				})}

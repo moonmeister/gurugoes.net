@@ -19,6 +19,6 @@
 	}
 
 	.form-inputs {
-		@apply block rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+		@apply block rounded-md border-gray-300/80 bg-white/80 text-gray-700 shadow-xs placeholder:text-green-800/50 focus:border-green-700 focus:ring-green-700 sm:text-sm;
 	}
 }
