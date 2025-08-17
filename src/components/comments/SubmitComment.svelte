@@ -179,16 +179,17 @@
 		</div>
 	{:else}
 		<form onsubmit={handleSubmit} class=" flex flex-wrap gap-4">
-			<div class={user && user !== false ? "hidden" : ""}>
+			<div class={user ? "hidden" : ""}>
 				<Label value="Name" htmlFor="name">
 					<Input
 						id="name"
-						type={user && user !== false ? "hidden" : "text"}
+						type={user ? "hidden" : "text"}
 						name="name"
 						bind:value={formData.name}
 						placeholder="Billie Jean"
 						aria-describedby="name-description"
-						required={!user || user === false}
+						required={!user}
+						disabled={isLoading}
 					/>
 					<Description id="name-description">
 						Real or fake, made available with your comment.
@@ -201,12 +202,13 @@
 				<Label value="Email" htmlFor="email">
 					<Input
 						id="email"
-						type={user && user !== false ? "hidden" : "email"}
+						type={user ? "hidden" : "email"}
 						name="email"
 						bind:value={formData.email}
 						placeholder="heistheone@jmail.com"
 						aria-describedby="email-description"
-						required={!user || user === false}
+						required={!user}
+						disabled={isLoading}
 					/>
 					<Description id="email-description">
 						We'll only use this for spam prevention.
@@ -220,16 +222,16 @@
 			<div class="w-80 flex-grow">
 				<Label htmlFor="comment">
 					{#snippet valueSnippet()}
-						{#if !user || user === false}
+						{#if !user}
 							Comment
 						{:else}
 							Comment as {user.name}&lt;{user.email}&gt;&nbsp;
 							<button
 								type="button"
-								class="text-sm underline"
+								class="cursor-pointer text-sm underline"
 								onclick={handleSignout}
 							>
-								Logout
+								Forget me
 							</button>
 						{/if}
 					{/snippet}
@@ -239,6 +241,7 @@
 						bind:value={formData.comment}
 						class="w-full max-w-full"
 						required={true}
+						disabled={isLoading}
 					/>
 					{#if errors.comment}
 						<p class="text-red-700 italic">{errors.comment}</p>
@@ -246,14 +249,6 @@
 				</Label>
 
 				<div class="flex items-center gap-2 p-2">
-					{#if user && user !== false}
-						<p class="text-sm">
-							Commenting as {user.name}&lt;{user.email}&gt;
-						</p>
-					{/if}
-					{#if user && user !== false}
-						<Button onclick={handleSignout}>Logout</Button>
-					{/if}
 					<Submit
 						value={isLoading ? "Submitting..." : "Comment"}
 						disabled={isLoading}
@@ -268,11 +263,10 @@
 						/>
 					{/if}
 				</div>
+				{#if errors.graphql}
+					<p class="text-red-700 italic">{@html errors.graphql}</p>
+				{/if}
 			</div>
-
-			{#if errors.graphql}
-				<p class="text-red-700 italic">{errors.graphql}</p>
-			{/if}
 		</form>
 	{/if}
 </div>
