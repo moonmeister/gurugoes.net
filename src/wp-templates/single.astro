@@ -27,6 +27,8 @@ const contentResponse = await client.query(
 );
 
 const { content, title, dateGmt, featuredImage } = contentResponse.data.post;
+
+const postId = Astro.locals.nodeSeed.databaseId;
 ---
 
 <Base>
@@ -68,7 +70,7 @@ const { content, title, dateGmt, featuredImage } = contentResponse.data.post;
 							/>
 						</div>
 					</article>
-					<CommentSection server:defer />
+					<CommentSection {postId} server:defer />
 				</>
 			)
 		}

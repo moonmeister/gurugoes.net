@@ -1,6 +1,10 @@
+/// <reference types="astro/client" />
 import type { SeedNode } from "@/lib/templates";
-declare namespace App {
-	interface Locals {
-		nodeSeed: SeedNode;
+
+declare global {
+	namespace App {
+		interface Locals {
+			nodeSeed: SeedNode;
+		}
 	}
 }
