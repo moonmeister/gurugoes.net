@@ -12,7 +12,8 @@
 	} = $props();
 
 	const inputClass = $derived(() => [
-		"form-input",
+		"form-inputs",
+		"bg-red-500",
 		className,
 		type === "checkbox" ? "form-checkbox" : "form-input",
 	]);

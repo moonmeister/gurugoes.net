@@ -18,6 +18,6 @@
 	{placeholder}
 	{required}
 	{rows}
-	class={["form-input", className, "form-textarea"]}
+	class={["form-inputs", className, "form-textarea"]}
 	{...restProps}
 ></textarea>
