@@ -10,13 +10,6 @@
 		checked = $bindable(false),
 		...restProps
 	} = $props();
-
-	const inputClass = $derived(() => [
-		"form-inputs",
-		"bg-red-500",
-		className,
-		type === "checkbox" ? "form-checkbox" : "form-input",
-	]);
 </script>
 
 {#if type === "checkbox"}
@@ -25,7 +18,7 @@
 		type="checkbox"
 		{name}
 		bind:checked
-		class={inputClass}
+		class={["form-inputs", "form-checkbox", className]}
 		{...restProps}
 	/>
 {:else if type === "hidden"}
@@ -38,7 +31,7 @@
 		bind:value
 		{placeholder}
 		{required}
-		class={inputClass}
+		class={["form-inputs", "form-email", className]}
 		{...restProps}
 	/>
 {:else}
@@ -49,7 +42,7 @@
 		bind:value
 		{placeholder}
 		{required}
-		class={inputClass}
+		class={["form-inputs", "form-text", className]}
 		{...restProps}
 	/>
 {/if}
