@@ -24,24 +24,21 @@ export const FeaturedImageFragment = gql`
 	}
 `;
 
-
 const { data, class: className } = Astro.props;
 const featuredImage = data?.node;
 ---
 
-{featuredImage?.sourceUrl ? (
-	<img
-		class:list={["w-full object-cover", className]}
-		src={featuredImage.sourceUrl}
-		srcset={featuredImage.srcSet}
-		alt={featuredImage.altText}
-	>
-		<slot />
-	</img>
-) : (
-	<div class:list={["bg-green-600", className]}>
-		<slot />
-	</div>
-)}
-
-
+{
+	featuredImage?.sourceUrl ? (
+		<img
+			class:list={["w-full object-cover", className]}
+			src={featuredImage.sourceUrl}
+			srcset={featuredImage.srcSet}
+			alt={featuredImage.altText}
+		/>
+	) : (
+		<div class:list={["bg-green-600", className]}>
+			<slot />
+		</div>
+	)
+}

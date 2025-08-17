@@ -1,5 +1,5 @@
 // Check if we're running in the browser
-const browser = typeof window !== 'undefined';
+const browser = typeof window !== "undefined";
 
 class AuthStore {
 	user = $state(false);

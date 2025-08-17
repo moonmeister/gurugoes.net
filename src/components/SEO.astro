@@ -14,7 +14,7 @@ const settingsPromise = client.query(
 			}
 		}
 	`,
-	{}
+	{},
 );
 
 const seoPromise = uri
@@ -48,7 +48,7 @@ const seoPromise = uri
 					}
 				}
 			`,
-			{ uri }
+			{ uri },
 		)
 	: Promise.resolve(null);
 

@@ -23,7 +23,7 @@ const contentResponse = await client.query(
 	`,
 	{
 		uri: Astro.url.pathname,
-	}
+	},
 );
 
 const { content, title, dateGmt, featuredImage } = contentResponse.data.post;

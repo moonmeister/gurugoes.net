@@ -16,7 +16,7 @@ const navData = await client.query(
 			}
 		}
 	`,
-	{}
+	{},
 );
 
 const categories = navData?.data?.categories?.nodes;
@@ -64,7 +64,7 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 						<Link key={uri} href={uri} role="menuitem">
 							{name}
 						</Link>
-					) : null
+					) : null,
 				)
 			}
 		</div>
@@ -103,7 +103,7 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 								{name}
 							</Link>
 						</div>
-					)
+					),
 				)
 			}
 		</div>
