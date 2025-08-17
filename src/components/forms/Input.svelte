@@ -18,7 +18,7 @@
 		type="checkbox"
 		{name}
 		bind:checked
-		class={["form-inputs", className]}
+		class={["form-inputs", "checked:bg-green-800", className]}
 		{...restProps}
 	/>
 {:else if type === "hidden"}
