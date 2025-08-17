@@ -1,0 +1,44 @@
+---
+import { gql } from "@urql/core";
+
+export interface Props {
+	data: {
+		node?: {
+			altText?: string;
+			sourceUrl?: string;
+			srcSet?: string;
+		};
+	};
+	class?: string;
+}
+
+export const FeaturedImageFragment = gql`
+	fragment FeaturedImage on Post {
+		featuredImage {
+			node {
+				altText
+				sourceUrl
+				srcSet
+			}
+		}
+	}
+`;
+
+const { data, class: className } = Astro.props;
+const featuredImage = data?.node;
+---
+
+{
+	featuredImage?.sourceUrl ? (
+		<img
+			class:list={["w-full object-cover", className]}
+			src={featuredImage.sourceUrl}
+			srcset={featuredImage.srcSet}
+			alt={featuredImage.altText}
+		/>
+	) : (
+		<div class:list={["bg-green-600", className]}>
+			<slot />
+		</div>
+	)
+}

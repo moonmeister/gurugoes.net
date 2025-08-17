@@ -1,11 +1,10 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
-
 import tailwindcss from "@tailwindcss/vite";
-
-import react from "@astrojs/react";
-
 import netlify from "@astrojs/netlify";
+import icon from "astro-icon";
+
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +21,14 @@ export default defineConfig({
 		},
 	},
 
-	integrations: [react()],
+	integrations: [
+		icon({
+			include: {
+				"simple-icons": ["instagram", "x", "bluesky"],
+				heroicons: ["x-mark", "bars-3"],
+			},
+		}),
+		svelte(),
+	],
 	adapter: netlify(),
 });

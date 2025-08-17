@@ -195,7 +195,7 @@ export async function idToTemplate({
 }) {
 	const { data } = await getSeedQuery({ uri, id, asPreview });
 
-	const node = data?.nodeByUri || data?.contentNode;
+	const node: SeedNode = data?.nodeByUri || data?.contentNode;
 
 	if (!node) {
 		throw new Error("Node not found", {
@@ -210,7 +210,7 @@ export async function idToTemplate({
 	}
 
 	return {
-		data,
+		node,
 		Template,
 	};
 }

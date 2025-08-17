@@ -2,8 +2,7 @@ import { gql } from "@urql/core";
 import { client } from "./client.js";
 
 export async function getSeedQuery(variables) {
-	return client.query(SEED_QUERY, variables, {
-	});
+	return client.query(SEED_QUERY, variables, {});
 }
 
 export const SEED_QUERY = gql`

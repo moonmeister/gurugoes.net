@@ -1,0 +1,183 @@
+---
+import { gql, client } from "@/lib/client";
+
+// Get the current page URI
+const uri = Astro.url.pathname;
+
+// Fetch settings and SEO data
+const settingsPromise = client.query(
+	gql`
+		query GetSettings {
+			generalSettings {
+				title
+				description
+			}
+		}
+	`,
+	{},
+);
+
+const seoPromise = uri
+	? client.query(
+			gql`
+				query GetSEO($uri: String!) {
+					nodeByUri(uri: $uri) {
+						isContentNode
+						isFrontPage
+						... on Category {
+							title: name
+							description
+						}
+						... on Post {
+							title
+							description: excerpt
+							modified: modifiedGmt
+							published: dateGmt
+						}
+						... on Page {
+							title
+						}
+						... on NodeWithFeaturedImage {
+							featuredImage {
+								node {
+									altText
+									sourceUrl
+								}
+							}
+						}
+					}
+				}
+			`,
+			{ uri },
+		)
+	: Promise.resolve(null);
+
+const [seoResults, settingsResults] = await Promise.all([
+	seoPromise,
+	settingsPromise,
+]);
+
+const data = seoResults?.data?.nodeByUri || {};
+const siteData = settingsResults.data.generalSettings || {};
+
+const { title: siteTitle, description: siteDescription } = siteData;
+
+// Build specific meta tags from incoming data
+const metaDescription =
+	data?.description?.replace(/<[^>]+>/g, "") || siteDescription;
+const metaTitle = data?.title || siteTitle;
+const type = data?.isFrontPage
+	? "website"
+	: data?.isContentNode
+		? "article"
+		: "website";
+
+let ogCard = [
+	{
+		property: `og:title`,
+		content: metaTitle,
+	},
+	{
+		property: `og:description`,
+		content: metaDescription,
+	},
+	{
+		property: `og:type`,
+		content: type,
+	},
+];
+
+let twitterCard = [
+	{
+		name: `twitter:card`,
+		content: `summary_large_image`,
+	},
+	{
+		name: `twitter:site`,
+		content: `@moon_meister`,
+	},
+	{
+		name: `twitter:title`,
+		content: metaTitle,
+	},
+	{
+		name: `twitter:description`,
+		content: metaDescription,
+	},
+];
+
+const jsonLd: any[] = [];
+
+const featuredImage = data?.featuredImage?.node;
+
+if (featuredImage) {
+	const { altText, sourceUrl: imageUrl } = featuredImage;
+
+	twitterCard = twitterCard.concat([
+		{
+			name: `twitter:image:alt`,
+			content: altText,
+		},
+		{
+			name: `twitter:image`,
+			content: imageUrl,
+		},
+	]);
+
+	ogCard = ogCard.concat([
+		{
+			property: `og:image:alt`,
+			content: altText,
+		},
+		{
+			property: `og:image`,
+			content: imageUrl,
+		},
+	]);
+}
+
+if (type === "article") {
+	if (data?.modified)
+		ogCard.push({
+			property: `og:article:modified_time `,
+			content: data.modified,
+		});
+	if (data?.published)
+		ogCard.push({
+			property: `og:article:published_time`,
+			content: data.published,
+		});
+
+	const jsonLdImage = featuredImage?.sourceUrl;
+
+	jsonLd.push({
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: metaTitle,
+		abstract: metaDescription,
+		dateModified: data?.modified,
+		datePublished: data?.published,
+		image: [jsonLdImage],
+	});
+}
+
+const pageTitle = `${siteTitle === metaTitle ? "Home" : metaTitle} · ${siteTitle}`;
+---
+
+<title>{pageTitle}</title>
+
+{
+	jsonLd.map((ld) => (
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(ld)}
+			is:inline
+		/>
+	))
+}
+
+<meta name="description" content={metaDescription} />
+
+{ogCard.map((tag) => <meta property={tag.property} content={tag.content} />)}
+
+{twitterCard.map((tag) => <meta name={tag.name} content={tag.content} />)}

@@ -12,3 +12,13 @@
 	--breakpoint-xl: 1800px;
 	--breakpoint-2xl: 1800px;
 }
+
+@layer components {
+	.button {
+		@apply rounded-full border-green-700 bg-gray-50 p-3 font-medium text-green-700 hover:text-green-900 focus:border-2;
+	}
+
+	.form-inputs {
+		@apply block rounded-md border-gray-300/80 bg-white/80 text-gray-700 shadow-xs placeholder:text-green-800/50 focus:border-green-700 focus:ring-green-700 sm:text-sm;
+	}
+}

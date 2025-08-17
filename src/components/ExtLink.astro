@@ -1,0 +1,12 @@
+---
+const { to, href, override = false, class: className, ...rest } = Astro.props;
+---
+
+<a
+	{...rest}
+	href={href || to}
+	rel="noopener"
+	class:list={[{ button: !override }, className]}
+>
+	<slot />
+</a>

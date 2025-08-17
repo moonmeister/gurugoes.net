@@ -1,0 +1,12 @@
+---
+import readingTime from "reading-time";
+import { durationFromTime } from "../lib/strings.js";
+
+const { content } = Astro.props as {
+	content: string;
+};
+
+const stats = readingTime(content);
+---
+
+<time datetime={durationFromTime(stats.time, 1000)}>{stats.text}</time>

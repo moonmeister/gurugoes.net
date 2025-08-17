@@ -1,0 +1,7 @@
+---
+const { class: className = "", override = false, ...rest } = Astro.props;
+---
+
+<a {...rest} class:list={[{ button: !override }, className]}>
+	<slot />
+</a>
