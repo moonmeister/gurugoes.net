@@ -1,28 +1,33 @@
 ---
 import { client, gql } from "@/lib/client";
 import CommentList from "./list.astro";
-import CommentForm from "./submit";
+import CommentForm from "./SubmitComment.svelte";
 
-const data = {};
 const postId = Astro.locals.nodeSeed.databaseId;
 
-const CommentSectionFragment = gql`
-	fragment CommentSection on Post {
-		databaseId
-		commentStatus
-	}
-`;
+const { data } = await client.query(
+	gql`
+		query CommentSection($postId: ID!) {
+			post(id: $postId, idType: DATABASE_ID) {
+				commentStatus
+			}
+		}
+	`,
+	{ postId }
+);
+
+const { commentStatus } = data.post;
 ---
 
 <section class="bg-green-700 p-8">
 	<h1 class="text-lg font-bold py-4">Comments</h1>
 	<CommentList />
-	<!-- 
+
 	{
 		commentStatus === "closed" ? (
 			<div>Comments are disabled for this post</div>
 		) : (
-			<CommentForm client:only />
+			<CommentForm client:visible {postId} />
 		)
-	} -->
+	}
 </section>

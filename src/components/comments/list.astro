@@ -5,28 +5,26 @@ import Comment from "./comment.astro";
 
 const postId = Astro.locals.nodeSeed.databaseId;
 
-const CommentsByPostId = gql`
-	query postComments($postId: ID!) {
-		post(id: $postId, idType: DATABASE_ID) {
-			comments {
-				nodes {
-					content
-					databaseId
-					parentDatabaseId
-					author {
-						node {
-							name
+const { data } = await client.query(
+	gql`
+		query postComments($postId: ID!) {
+			post(id: $postId, idType: DATABASE_ID) {
+				comments {
+					nodes {
+						content
+						databaseId
+						parentDatabaseId
+						author {
+							node {
+								name
+							}
 						}
+						dateGmt
 					}
-					dateGmt
 				}
 			}
 		}
-	}
-`;
-
-const { data } = await client.query(
-	CommentsByPostId,
+	`,
 	{ postId },
 	{
 		metadata: {
@@ -37,35 +35,8 @@ const { data } = await client.query(
 
 const comments = data?.post?.comments?.nodes || [];
 
-// Add test comments for development
-const testComments = [
-	{
-		content: "<p>This is a test comment to demonstrate the comment system.</p>",
-		databaseId: 999001,
-		parentDatabaseId: null,
-		author: {
-			node: {
-				name: "Test User 1",
-			},
-		},
-		dateGmt: "2024-01-15T10:30:00",
-	},
-	{
-		content:
-			"<p>Another test comment with some more content to show how longer comments look.</p>",
-		databaseId: 999002,
-		parentDatabaseId: null,
-		author: {
-			node: {
-				name: "Test User 2",
-			},
-		},
-		dateGmt: "2024-01-15T14:45:00",
-	},
-];
-
 // Use test comments if no real comments exist
-const finalComments = comments.length > 0 ? comments : testComments;
+const finalComments = comments.length > 0 ? comments : [];
 ---
 
 <>
@@ -74,7 +45,7 @@ const finalComments = comments.length > 0 ? comments : testComments;
 			<p>There are no comments.</p>
 		) : (
 			<ul class="flex flex-col gap-2">
-				{testComments.map((comment) => {
+				{comments.map((comment) => {
 					const { databaseId } = comment;
 					return <Comment comment={comment} />;
 				})}
