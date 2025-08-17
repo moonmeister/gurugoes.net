@@ -1,39 +1,7 @@
 ---
-import { gql, client } from "@/lib/client";
-
 import Comment from "./comment.astro";
 
-const postId = Astro.locals.nodeSeed.databaseId;
-
-const { data } = await client.query(
-	gql`
-		query postComments($postId: ID!) {
-			post(id: $postId, idType: DATABASE_ID) {
-				comments {
-					nodes {
-						content
-						databaseId
-						parentDatabaseId
-						author {
-							node {
-								name
-							}
-						}
-						dateGmt
-					}
-				}
-			}
-		}
-	`,
-	{ postId },
-	{
-		metadata: {
-			requestPolicy: "cache-and-network",
-		},
-	}
-);
-
-const comments = data?.post?.comments?.nodes || [];
+const { comments = [] } = Astro.props;
 
 // Use test comments if no real comments exist
 const finalComments = comments.length > 0 ? comments : [];

@@ -10,18 +10,31 @@ const { data } = await client.query(
 		query CommentSection($postId: ID!) {
 			post(id: $postId, idType: DATABASE_ID) {
 				commentStatus
+				comments {
+					nodes {
+						content
+						databaseId
+						parentDatabaseId
+						author {
+							node {
+								name
+							}
+						}
+						dateGmt
+					}
+				}
 			}
 		}
 	`,
 	{ postId }
 );
 
-const { commentStatus } = data.post;
+const { commentStatus, comments } = data.post;
 ---
 
 <section class="bg-green-700 p-8">
 	<h1 class="text-lg font-bold py-4">Comments</h1>
-	<CommentList />
+	<CommentList {comments} />
 
 	{
 		commentStatus === "closed" ? (
