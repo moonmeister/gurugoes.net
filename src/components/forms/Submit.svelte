@@ -9,7 +9,7 @@
 	class={[
 		"button",
 		"cursor-pointer",
-		{ "opacity-50 cursor-not-allowed": disabled },
+		{ "cursor-not-allowed opacity-50": disabled },
 	]}
 	{...restProps}
 />

@@ -32,14 +32,14 @@ const postId = Astro.locals.nodeSeed.databaseId;
 ---
 
 <Base>
-	<div class="relative bg-white rounded-3xl overflow-hidden">
+	<div class="relative overflow-hidden rounded-3xl bg-white">
 		{
 			contentResponse.error ? (
 				<div class="text-red-500">{contentResponse.error}</div>
 			) : (
 				<>
 					<article class="relative">
-						<header class="static text-lg mx-auto w-full">
+						<header class="static mx-auto w-full text-lg">
 							<div
 								class="grid w-full"
 								style={{
@@ -48,16 +48,16 @@ const postId = Astro.locals.nodeSeed.databaseId;
 									gap: "1em",
 								}}
 							>
-								<div class="row-span-full col-span-full">
+								<div class="col-span-full row-span-full">
 									<FeaturedImage data={featuredImage} class="max-h-96" />
 								</div>
-								<h1 class="z-10 row-start-2 row-end-3 col-start-2 col-end-3">
-									<span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-white sm:text-4xl bg-green-700/50 p-2 rounded-lg">
+								<h1 class="z-10 col-start-2 col-end-3 row-start-2 row-end-3">
+									<span class="mt-2 block rounded-lg bg-green-700/50 p-2 text-center text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
 										{title}
 									</span>
 								</h1>
 							</div>
-							<div class="text-center text-sm text-gray-500 leading-8">
+							<div class="text-center text-sm leading-8 text-gray-500">
 								<Time dateTime={dateGmt} />
 								<span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
 								<ReadingTime content={content} />
@@ -65,7 +65,7 @@ const postId = Astro.locals.nodeSeed.databaseId;
 						</header>
 						<div class="my-16 px-4 sm:px-6 lg:px-8">
 							<div
-								class="wp-blocks prose-lg mt-6 max-w-prose prose-green text-gray-500 mx-auto"
+								class="wp-blocks prose-lg prose-green mx-auto mt-6 max-w-prose text-gray-500"
 								set:html={content}
 							/>
 						</div>

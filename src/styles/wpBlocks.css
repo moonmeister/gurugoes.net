@@ -4,13 +4,13 @@
 .wp-blocks {
 	@apply overflow-x-hidden;
 	a {
-		@apply text-violet-600 relative;
+		@apply relative text-violet-600;
 	}
 
 	/* Block: Image  ------------------------- */
 
 	.wp-block-image {
-		@apply block mt-6;
+		@apply mt-6 block;
 
 		figure {
 			@apply flex flex-col;
@@ -67,7 +67,7 @@
 	}
 
 	.has-drop-cap::first-letter {
-		@apply font-serif text-green-600 float-left leading-8 text-6xl;
+		@apply float-left font-serif text-6xl leading-8 text-green-600;
 		/* font-size: 75px; */
 		/* line-height: 60px; */
 		padding-top: 4px;
@@ -78,7 +78,7 @@
 			initial-letter: 4;
 			-webkit-initial-letter: 4;
 			font-size: unset;
-			@apply float-none leading-normal p-0;
+			@apply float-none p-0 leading-normal;
 		}
 	}
 
@@ -108,14 +108,14 @@
 		@apply m-6 border-violet-500;
 
 		&:not(.is-style-wide) {
-			@apply max-w-xs mx-auto;
+			@apply mx-auto max-w-xs;
 		}
 
 		&.is-style-dots {
-			@apply border-0 max-w-none leading-none h-auto text-center;
+			@apply h-auto max-w-none border-0 text-center leading-none;
 
 			&::before {
-				@apply font-serif text-violet-500 text-2xl;
+				@apply font-serif text-2xl text-violet-500;
 				content: "\00b7 \00b7 \00b7";
 				letter-spacing: 2em;
 				padding-left: 2em;
@@ -126,13 +126,13 @@
 	/* Block: Quote  ------------------------- */
 
 	blockquote {
-		@apply my-8 px-8 border-l-2 border-yellow-600 flex flex-col justify-center;
+		@apply my-8 flex flex-col justify-center border-l-2 border-yellow-600 px-8;
 
 		p {
-			@apply italic m-auto;
+			@apply m-auto italic;
 		}
 		cite {
-			@apply text-sm text-gray-700 block;
+			@apply block text-sm text-gray-700;
 		}
 
 		p,
@@ -141,14 +141,14 @@
 		}
 
 		&.is-style-large {
-			@apply border-none relative;
+			@apply relative border-none;
 			p {
 				@apply text-2xl;
 			}
 
 			p::before {
 				content: "❝";
-				@apply text-blue-600 absolute leading-none;
+				@apply absolute leading-none text-blue-600;
 				font-size: 6rem;
 				top: -1rem;
 				left: -1rem;
@@ -196,7 +196,7 @@
 
 	/* Block: Cover  ------------------------- */
 	.wp-block-cover {
-		@apply relative mt-6 bg-black bg-cover overflow-hidden h-full w-full flex justify-center items-center;
+		@apply relative mt-6 flex h-full w-full items-center justify-center overflow-hidden bg-black bg-cover;
 		min-height: 430px;
 
 		.wp-block-cover__inner-container {
@@ -279,7 +279,7 @@
 	/* Block: Columns  ------------------------- */
 
 	.wp-block-columns {
-		@apply flex p-4 flex-row flex-nowrap;
+		@apply flex flex-row flex-nowrap p-4;
 
 		&.are-vertically-aligned-top {
 			@apply justify-start;
@@ -318,23 +318,23 @@
 			@apply m-0 p-0;
 		}
 		.blocks-gallery-grid {
-			@apply flex gap-4 flex-wrap;
+			@apply flex flex-wrap gap-4;
 		}
 
 		.blocks-gallery-item {
-			@apply relative list-none min-w-0 flex justify-center flex-col;
+			@apply relative flex min-w-0 list-none flex-col justify-center;
 			flex: 1;
 
 			a,
 			.gatsby-image-wrapper {
-				@apply min-w-0 h-full object-cover;
+				@apply h-full min-w-0 object-cover;
 			}
 
 			figure {
-				@apply flex items-end justify-center h-full;
+				@apply flex h-full items-end justify-center;
 
 				figcaption {
-					@apply absolute bottom-0 w-full max-h-full text-white text-sm text-center;
+					@apply absolute bottom-0 max-h-full w-full text-center text-sm text-white;
 					padding: 40px 10px 9px;
 					background: linear-gradient(
 						0deg,
