@@ -3,6 +3,7 @@ import type { GetStaticPaths, InferGetStaticParamsType } from "astro";
 import { fetchAllPaginated, gql } from "@/lib/client";
 import { idToTemplate } from "@/lib/templates";
 
+export const prerender = true;
 
 export const getStaticPaths = (async () => {
 	const wpCategories = await fetchAllPaginated(
