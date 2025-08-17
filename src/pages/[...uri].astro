@@ -65,12 +65,14 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 
 const { uri = "/" } = Astro.params as Params;
 
-const {Template, data} = await idToTemplate({ uri });
+const {Template, node} = await idToTemplate({ uri });
+
+Astro.locals.nodeSeed = node;
 
 ---
 
 {
-	Template ? <Template seedQuery={data} /> : 
+	Template ? <Template /> : 
 	(<title>Not found</title>
 	<h1>
 		We found you page but couldn't find a template by which to render the content.

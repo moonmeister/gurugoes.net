@@ -1,0 +1,28 @@
+---
+import { client, gql } from "@/lib/client";
+import CommentList from "./list.astro";
+import CommentForm from "./submit";
+
+const data = {};
+const postId = Astro.locals.nodeSeed.databaseId;
+
+const CommentSectionFragment = gql`
+	fragment CommentSection on Post {
+		databaseId
+		commentStatus
+	}
+`;
+---
+
+<section class="bg-green-700 p-8">
+	<h1 class="text-lg font-bold py-4">Comments</h1>
+	<CommentList />
+	<!-- 
+	{
+		commentStatus === "closed" ? (
+			<div>Comments are disabled for this post</div>
+		) : (
+			<CommentForm client:only />
+		)
+	} -->
+</section>
