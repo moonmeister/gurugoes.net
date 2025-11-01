@@ -25,7 +25,7 @@
 		"@urql/core": "^6.0.1",
 		"@urql/exchange-persisted": "^5.0.1",
 		"@urql/svelte": "^5.0.0",
-		"astro": "^5.15.2",
+		"astro": "^5.15.3",
 		"astro-icon": "^1.1.5",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.7.1",
@@ -33,7 +33,7 @@
 		"react-dom": "^19.2.0",
 		"react-hook-form": "^7.65.0",
 		"reading-time": "^1.5.0",
-		"svelte": "^5.43.0",
+		"svelte": "^5.43.2",
 		"tailwindcss": "^4.1.16",
 		"typescript": "^5.9.3",
 		"urql": "^5.0.1"
