@@ -23,7 +23,7 @@
 		"@urql/svelte": "^5.0.0",
 		"astro": "^6.4.8",
 		"astro-icon": "^1.2.0",
-		"prettier-plugin-svelte": "^3.5.2",
+		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.1",
 		"reading-time": "^1.5.0",
 		"svelte": "^5.57.1",
