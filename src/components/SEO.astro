@@ -166,18 +166,20 @@ const pageTitle = `${siteTitle === metaTitle ? "Home" : metaTitle} · ${siteTitl
 
 <title>{pageTitle}</title>
 
-{
-	jsonLd.map((ld) => (
-		<script
-			type="application/ld+json"
-			set:html={JSON.stringify(ld)}
-			is:inline
-		/>
-	))
-}
+{jsonLd.map((ld) => (
+	<script
+		type="application/ld+json"
+		set:html={JSON.stringify(ld)}
+		is:inline
+	></script>
+))}
 
 <meta name="description" content={metaDescription} />
 
-{ogCard.map((tag) => <meta property={tag.property} content={tag.content} />)}
+{ogCard.map((tag) => (
+	<meta property={tag.property} content={tag.content} />
+))}
 
-{twitterCard.map((tag) => <meta name={tag.name} content={tag.content} />)}
+{twitterCard.map((tag) => (
+	<meta name={tag.name} content={tag.content} />
+))}

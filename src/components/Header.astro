@@ -58,15 +58,13 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 			</div>
 		</div>
 		<div class="hidden md:flex md:space-x-10">
-			{
-				allCategories?.map(({ name, uri }) =>
-					currentPage !== uri ? (
-						<Link key={uri} href={uri} role="menuitem">
-							{name}
-						</Link>
-					) : null,
-				)
-			}
+			{allCategories?.map(({ name, uri }) =>
+				currentPage !== uri ? (
+					<Link key={uri} href={uri} role="menuitem">
+						{name}
+					</Link>
+				) : null,
+			)}
 		</div>
 	</nav>
 </div>
@@ -75,9 +73,7 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 	class="absolute inset-x-0 top-0 origin-top-right p-2 transition data-[closed=true]:hidden md:hidden"
 	data-closed="true"
 >
-	<div
-		class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/5"
-	>
+	<div class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/5">
 		<div class="flex items-center justify-between px-5 pt-4">
 			<div class="mr-2">
 				<button
@@ -91,21 +87,19 @@ const allCategories = [{ name: "All", uri: "/" }, ...categories];
 			</div>
 		</div>
 		<div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
-			{
-				allCategories?.map(({ name, uri }) =>
-					currentPage === uri ? null : (
-						<div class="px-2 pt-2 pb-3" role="none">
-							<Link
-								href={uri}
-								class="block px-3 py-2 hover:bg-gray-50"
-								role="menuitem"
-							>
-								{name}
-							</Link>
-						</div>
-					),
-				)
-			}
+			{allCategories?.map(({ name, uri }) =>
+				currentPage === uri ? null : (
+					<div class="px-2 pt-2 pb-3" role="none">
+						<Link
+							href={uri}
+							class="block px-3 py-2 hover:bg-gray-50"
+							role="menuitem"
+						>
+							{name}
+						</Link>
+					</div>
+				),
+			)}
 		</div>
 	</div>
 </div>

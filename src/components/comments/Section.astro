@@ -45,11 +45,9 @@ const {
 
 	<hr class="my-4 mt-6" />
 
-	{
-		commentStatus === "closed" ? (
-			<div>Comments are disabled for this post</div>
-		) : (
-			<CommentForm client:visible {postId} />
-		)
-	}
+	{commentStatus === "closed" ? (
+		<div>Comments are disabled for this post</div>
+	) : (
+		<CommentForm client:visible {postId} />
+	)}
 </section>
