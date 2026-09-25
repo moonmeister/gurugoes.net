@@ -203,7 +203,7 @@ export async function idToTemplate({
 		});
 	}
 
-	const Template = await getTemplate(node, availableTemplates);
+	const Template = getTemplate(node, availableTemplates);
 
 	if (!Template) {
 		throw new Error("Template not found");

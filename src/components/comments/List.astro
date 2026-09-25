@@ -19,19 +19,16 @@ const { comments } = Astro.props;
 ---
 
 <>
-	{
-		comments.length === 0 ? (
-			<p>There are no comments.</p>
-		) : (
-			<ul class="flex flex-col gap-2">
-				{comments.map((comment) => {
-					if (comment.parentDatabaseId) {
-						return null;
-					}
-					const { databaseId } = comment;
-					return <Comment comment={comment} />;
-				})}
-			</ul>
-		)
-	}
+	{comments.length === 0 ? (
+		<p>There are no comments.</p>
+	) : (
+		<ul class="flex flex-col gap-2">
+			{comments.map((comment) => {
+				if (comment.parentDatabaseId) {
+					return null;
+				}
+				return <Comment comment={comment} />;
+			})}
+		</ul>
+	)}
 </>
