@@ -27,7 +27,6 @@ const { comments } = Astro.props;
 				if (comment.parentDatabaseId) {
 					return null;
 				}
-				const { databaseId } = comment;
 				return <Comment comment={comment} />;
 			})}
 		</ul>

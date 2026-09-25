@@ -24,8 +24,8 @@ export const getStaticPaths = (async () => {
 				}
 			}
 		`,
-		(data) => data.terms.nodes,
-		(data) => data.terms.pageInfo,
+		(data: any) => data?.terms?.nodes,
+		(data: any) => data?.terms?.pageInfo,
 	);
 
 	const wpContent = await fetchAllPaginated(
@@ -48,8 +48,8 @@ export const getStaticPaths = (async () => {
 				}
 			}
 		`,
-		(data) => data.contentNodes.nodes,
-		(data) => data.contentNodes.pageInfo,
+		(data: any) => data?.contentNodes?.nodes,
+		(data: any) => data?.contentNodes?.pageInfo,
 	);
 
 	return [...wpContent, ...wpCategories, {}].map((nodeWithUri) => {
@@ -79,6 +79,6 @@ Astro.locals.nodeSeed = node;
 			content.
 		</h1>
 		<pre>{JSON.stringify(Template, null, 2)}</pre>
-		<pre>{JSON.stringify(data, null, 2)}</pre>
+		<pre>{JSON.stringify(node, null, 2)}</pre>
 	</>
 )}
