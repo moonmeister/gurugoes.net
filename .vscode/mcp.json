@@ -1,0 +1,32 @@
+{
+	"servers": {
+		"Astro Docs": {
+			"url": "https://mcp.docs.astro.build/mcp",
+			"type": "http"
+		},
+		"tailwindcss-docs-mcp": {
+			"command": "npx",
+			"args": ["-y", "tailwindcss-docs-mcp"],
+			"env": {
+				"TAILWIND_DOCS_MCP_DEFAULT_VERSION": "${input:tailwind_version}"
+			},
+			"type": "stdio"
+		},
+		"Svelte Docs": {
+			"url": "https://mcp.svelte.dev/mcp",
+			"type": "http"
+		}
+	},
+	"inputs": [
+		{
+			"id": "tailwind_version",
+			"type": "promptString",
+			"description": "Which version of Tailwind CSS do you want to use?"
+		},
+		{
+			"id": "data_directory",
+			"type": "promptString",
+			"description": "Do you want to set a custom data directory?"
+		}
+	]
+}
