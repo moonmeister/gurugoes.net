@@ -8,8 +8,7 @@
 			"command": "npx",
 			"args": ["-y", "tailwindcss-docs-mcp"],
 			"env": {
-				"TAILWIND_DOCS_MCP_DEFAULT_VERSION": "${input:tailwind_version}",
-				"TAILWIND_DOCS_MCP_PATH": "${input:data_directory}"
+				"TAILWIND_DOCS_MCP_DEFAULT_VERSION": "${input:tailwind_version}"
 			},
 			"type": "stdio"
 		},
