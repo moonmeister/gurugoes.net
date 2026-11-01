@@ -11,11 +11,11 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.10",
-		"@astrojs/netlify": "^8.2.6",
+		"@astrojs/check": "^0.9.12",
+		"@astrojs/netlify": "^8.2.10",
 		"@astrojs/svelte": "^9.0.1",
 		"@iconify-json/heroicons": "^1.2.3",
-		"@iconify-json/simple-icons": "^1.2.97",
+		"@iconify-json/simple-icons": "^1.2.101",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tailwindcss/typography": "^0.5.20",
 		"@tailwindcss/vite": "^4.3.3",
@@ -27,13 +27,13 @@
 		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.1",
 		"reading-time": "^1.5.0",
-		"svelte": "^5.57.1",
+		"svelte": "^5.57.3",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3"
 	},
 	"packageManager": "pnpm@12.6.0+sha512.3ef68f951cb111ac204b4a5a16f0b2ddf0da56a96e0413e81d855d9f0b55ef926714709028e1cd00c405c2c5fb7b9e8ec4dc46777c805d0373c2f2ff00fd20ec",
 	"devDependencies": {
-		"prettier": "3.9.9",
+		"prettier": "3.9.10",
 		"prettier-plugin-astro": "1.0.1"
 	}
 }
